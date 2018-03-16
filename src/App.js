@@ -1,31 +1,35 @@
 import React, { Component } from 'react';
 import './reset.css';
 import './App.css';
+import axios from 'axios';
 import NavBar from './components/NavBar/NavBar';
 import Routes from './routes';
 
 class App extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      userName: '',
+      userImg: ''
+    };
   }
 
-  // showNav() {
-  //   if (this.props.match.path !== '/') {
-  //     return (
-  //       <div>
-  //         <NavBar />
-  //         {Routes}
-  //       </div>
-  //     );
-  //   }
-  // }
+  componentDidMount() {
+    axios.get('/auth/me')
+    .then(res => {
+      this.setState({
+        userName: res.data.user_name,
+        userImg: res.data.img
+      });
+    });
+  }
 
   render() {
-    console.log(this.props.match);
+    console.log(this.pr);
     return (
       <div className="App">
-        {/* {this.showNav()} */}
-        <NavBar />
+        <NavBar user={this.state.userName}/>
         {Routes}
       </div>
     );
@@ -33,4 +37,3 @@ class App extends Component {
 }
 
 export default App;
-
