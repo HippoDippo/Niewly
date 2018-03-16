@@ -5,18 +5,15 @@ import { Link } from 'react-router-dom';
 export default function NavBar(props) {
   return (
     <div className="nav">
-      <h2 className="nav-logo">Niewly</h2>
       <div className="nav-bar">
-        <ul>
-          <li>Feed</li>
-          <li>Profile</li>
-          <li>Editor</li>
+        <div className="nav-logo">Niewly</div>
+        <ul className="nav-links">
+          <Link className="nav-link" to="/"><li>Feed</li></Link>
+          <Link className="nav-link" to="/users"><li>Users</li></Link>
+          <Link className="nav-link" to="/profile"><li>Profile</li></Link>
+          <Link className="nav-link" to="/editor"><li>Editor</li></Link>
         </ul>
       </div>
     </div>
   );
 }
-
-
-
-
