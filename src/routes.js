@@ -9,8 +9,7 @@ import App from './App';
 
 export default (
   <Switch>
-    <Route exact path="/" component={App}/>
-    <Route path="/feed" component={Feed}/>
+    <Route exact path="/" component={Feed}/>
     <Route path="/users" component={Users}/>
     <Route path="/profile" component={Profile}/>
     <Route path="/editor" component={Editor}/>

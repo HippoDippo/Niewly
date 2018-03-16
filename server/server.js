@@ -73,7 +73,7 @@ app.get('/auth/me', (req, res, next) => {
 
 app.get('/auth/logout', (req, res) => {
   req.logOut();
-  return res.redirect('http://localhost:3000/#/');
+  return res.redirect('http://localhost:3000/#/feed');
 });
 
 // app.get();
