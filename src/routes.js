@@ -4,11 +4,12 @@ import Editor from './components/Editor/Editor';
 import Profile from './components/Profile/Profile';
 import Feed from './components/Feed/Feed';
 import Users from './components/Users/Users';
-import Landing from './components/Landing/Landing';
+// import Login from './components/Login/Login';
+import App from './App';
 
 export default (
   <Switch>
-    <Route exact path="/" component={Landing}/>
+    <Route exact path="/" component={App}/>
     <Route path="/feed" component={Feed}/>
     <Route path="/users" component={Users}/>
     <Route path="/profile" component={Profile}/>
