@@ -8,7 +8,7 @@ export default function NavBar(props) {
       <div className="nav-bar">
         <div className="nav-logo">Niewly</div>
         <ul className="nav-links">
-          <Link className="nav-link" to="/"><li>Feed</li></Link>
+          <Link className="nav-link" to="/feed"><li>Feed</li></Link>
           <Link className="nav-link" to="/users"><li>Users</li></Link>
           <Link className="nav-link" to="/profile"><li>Profile</li></Link>
           <Link className="nav-link" to="/editor"><li>Editor</li></Link>

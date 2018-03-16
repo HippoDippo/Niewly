@@ -28,7 +28,6 @@ class Profile extends React.Component {
 
     return (
       <div className="profile">
-        <NavBar className="nav-bar" />
         <h1 className="user-name">{userName}</h1>
         <img src={userImg} className="profile-img" />
       </div>
