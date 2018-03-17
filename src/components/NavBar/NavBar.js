@@ -8,6 +8,7 @@ export default function NavBar(props) {
       return ( <Fragment>
                  <Link className="nav-link" to="/profile"><li>Profile</li></Link>
                  <Link className="nav-link" to="/editor"><li>Editor</li></Link>
+                 <Link className="nav-link" to="/bookmarks"><li>Bookmarks</li></Link>
                  <a className="nav-link" href={'http://localhost:3003/auth/logout'}><li>Logout</li></a>
                </Fragment>
       );
@@ -29,4 +30,3 @@ export default function NavBar(props) {
     </div>
   );
 }
-
