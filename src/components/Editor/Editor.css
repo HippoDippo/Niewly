@@ -1,0 +1,40 @@
+.editor {
+    background-color: #ddd;
+    box-shadow: 7px 7px #ccc, 14px 14px #bbb;
+    padding: 43px;
+    margin-top: 23px;
+    margin-left: 333px;
+    margin-right: 333px;
+  }
+  
+  .editor-input {
+    /*  */
+  }
+  
+  .input {
+    height: 533px;
+    width: 533px;
+    font-size: 23px;
+    border: 3px solid #333;
+    border-radius: 3px;
+  }
+  
+  .editor-button {
+    /*  */
+  }
+  
+  .button {
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 3px;
+    font-size: 23px;
+    font-weight: 700;
+    padding: 11px 33px;
+    margin-top: 23px;
+  }
+  
+  .button:hover {
+    color: #333;
+    background-color: #fff;
+  }

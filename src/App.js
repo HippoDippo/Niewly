@@ -24,7 +24,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.pr);
     return (
       <div className="App">
         <NavBar user={this.state.user}/>
