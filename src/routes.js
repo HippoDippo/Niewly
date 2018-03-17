@@ -4,7 +4,7 @@ import Editor from './components/Editor/Editor';
 import Profile from './components/Profile/Profile';
 import Feed from './components/Feed/Feed';
 import Users from './components/Users/Users';
-// import Login from './components/Login/Login';
+import BookMarks from './components/BookMarks/BookMarks';
 import App from './App';
 
 export default (
@@ -13,5 +13,6 @@ export default (
     <Route path="/users" component={Users}/>
     <Route path="/profile" component={Profile}/>
     <Route path="/editor" component={Editor}/>
+    <Route path="/bookmarks" component={BookMarks}/>
   </Switch>
 );

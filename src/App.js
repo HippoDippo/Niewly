@@ -10,8 +10,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      userName: '',
-      userImg: ''
+      user: ''
     };
   }
 
@@ -19,8 +18,7 @@ class App extends Component {
     axios.get('/auth/me')
     .then(res => {
       this.setState({
-        userName: res.data.user_name,
-        userImg: res.data.img
+        user: res.data.user_name
       });
     });
   }
@@ -29,7 +27,7 @@ class App extends Component {
     console.log(this.pr);
     return (
       <div className="App">
-        <NavBar user={this.state.userName}/>
+        <NavBar user={this.state.user}/>
         {Routes}
       </div>
     );

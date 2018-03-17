@@ -30,6 +30,8 @@ class Profile extends React.Component {
       <div className="profile">
         <h1 className="user-name">{userName}</h1>
         <img src={userImg} className="profile-img" />
+        {/* <Posts /> */}
+        {/* <FollowedUsersPosts /> */}
       </div>
     );
   }
