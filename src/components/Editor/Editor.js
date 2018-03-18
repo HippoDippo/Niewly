@@ -5,10 +5,10 @@ export default function Editor(props) {
   return (
     <div className="editor">
       <div>
-        <textarea {/*onChange={props.typing}*/} className="input"/>
+        <textarea className="input"/>
       </div>
       <div>
-        <button {/*onClick={props.post}*/} className="button">Post</button>
+        <button className="button">Post</button>
       </div>
     </div>
   );
