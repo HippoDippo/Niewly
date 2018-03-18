@@ -1,8 +1,10 @@
 import React from 'react';
 import './Posts.css';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { updatePostId } from '../../ducks/reducer';
 
-export default class Posts extends React.Component {
+class Posts extends React.Component {
   constructor(props) {
     super(props);
 
@@ -32,9 +34,10 @@ export default class Posts extends React.Component {
     axios.post('/api/savedposts', {userID: this.state.userID, titleText: selectedPost[0].post_title, introText: selectedPost[0].post_intro, bodyText: selectedPost[0].post_body});
   }
 
-  // handleClickView() {
-  //   // When user clicks view button, set post id to redux store.
-  //   // Then route to PostView component.
+  // handleClickView(i, event) {
+  //   When user clicks view button, set post id to redux store.
+  //   Then route to PostView component.
+  //   this.props.dispatch(updatePostId(i));
   // }
 
   render() {
@@ -57,3 +60,5 @@ export default class Posts extends React.Component {
     );
   }
 }
+
+export default connect()(Posts);
