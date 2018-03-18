@@ -14,6 +14,11 @@ export default function Editor(props) {
   );
 }
 
+// function extractID(str) {
+//   var start = str.indexOf('|');
+//   return Number(str.slice(start+1, str.length-11));
+// }
+
 // let text = 'The code below is awesome: <<var name = "Kaycee";>> This is our other codeblock <<var name = "Will";>>';
 
 // function getNumberOfCodeblocks(text) {

@@ -19,10 +19,10 @@ class PostView extends React.Component {
     axios.get('/api/getPost', { postID: this.state.postID })
     .then(post => {
       this.setState({
-        postTitle: post.title,
-        postIntro: post.intro,
-        postBody: post.body,
-        postAuthor: post.author
+        postTitle: post.post_title,
+        postIntro: post.post_intro,
+        postBody: post.post_body,
+        postAuthor: post.post_author
       });
     });
   }
@@ -31,10 +31,10 @@ class PostView extends React.Component {
     return (
       <div className="post-view">
         <div className="post">
-          <h1>{postTitle}</h1>
-          <h2>{postIntro}</h2>
-          <h4>{postBody}</h4>
-          <p>{postAuthor}</p>
+          <h1>{this.state.postTitle}</h1>
+          <h2>{this.state.postIntro}</h2>
+          <h4>{this.state.postBody}</h4>
+          <p>{this.state.postAuthor}</p>
         </div>
       </div>
     );

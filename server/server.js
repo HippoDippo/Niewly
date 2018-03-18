@@ -84,6 +84,15 @@ app.get('/api/getPost', (req, res) => {
     res.status(200).send(post);
   });
 });
+
+app.get('/api/getPosts', (req, res) => {
+  const db = req.app.get('db');
+
+  db.get_all_posts()
+  .then(posts => {
+    res.status(200).send(posts);
+  });
+})
 // app.post();
 // app.put();
 // app.delete();
