@@ -76,7 +76,14 @@ app.get('/auth/logout', (req, res) => {
   return res.redirect('http://localhost:3000/#/feed');
 });
 
-// app.get();
+app.get('/api/getPost', (req, res) => {
+  const db = req.app.get('db');
+
+  db.get_post(req.body.postID)
+  .then(post => {
+    res.status(200).send(post);
+  });
+});
 // app.post();
 // app.put();
 // app.delete();
