@@ -62,10 +62,8 @@ class Posts extends React.Component {
             <ul className="Post-items">
               <li className="Post-item">{arr[i].post_intro}</li>
               <li className="Post-item">Author: <span className="author">{arr[i].post_author}</span></li>
-              <div>
               <Link to="/postView" onClick={this.handleClickView.bind(this, arr[i].id)} className="Post-item view-button"><li>View</li></Link>
-                <li onClick={this.handleClickSave.bind(this, arr[i].id)} className="Post-item save-button">Save</li>
-              </div>
+              <li onClick={this.handleClickSave.bind(this, arr[i].id)} className="Post-item save-button">Save</li>
             </ul>
           </div>
         </div>
