@@ -2,6 +2,7 @@ import React from 'react';
 import './PostView.css';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class PostView extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class PostView extends React.Component {
   componentDidMount() {
     axios.get('/api/getPost/' + this.props.id)
     .then(res => {
-      this.setState({
+      this.setState({ 
         postTitle: res.data[0].post_title,
         postIntro: res.data[0].post_intro,
         postBody: res.data[0].post_body,
@@ -35,6 +36,8 @@ class PostView extends React.Component {
           <h2>{this.state.postIntro}</h2>
           <h4>{this.state.postBody}</h4>
           <p>Author: {this.state.postAuthor}</p>
+          <button>Save</button>
+          <Link to="/">Back</Link>
         </div>
       </div>
     );

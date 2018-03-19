@@ -1,4 +1,4 @@
-.posts {
+/* .posts {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,26 +37,116 @@
     padding: 3px;
   }
 
-.save-button, .view-button {
-  color: #333;
-  background-color: #fff;
-  border: none;
-  border-radius: 3px;
-  box-shadow: 0 3px 3px #bbb;
-  padding: 7px 23px;
-  margin: 14px;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.save-button, .view-button:hover {
-  color: #fff;
-  background-color: #7279da;
-}
-
 .author {
   font-size: 16px;
   align-items: center;
   justify-content: center;
   padding: 3px;
+} */
+
+
+@import url('https://fonts.googleapis.com/css?family=Mukta:300,400,700');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* html {
+  font-size: 10px;
+} */
+
+/*
+'Mukta'
+$td: 250ms;
+$tf: cubic-bezier(0.68, -0.55, 0.265, 1.55); */
+
+.Posts {
+  display: flex;
+  flex-direction: column;
+  margin: 33px auto;
+  max-width: 33rem;
+}
+
+.Post {
+  flex: 1;
+  background-color: #fff;
+  cursor: pointer;
+  transform-origin: 50% 50%;
+  /* transition:
+    transform $td $tf,
+    opacity $td $tf,
+    box-shadow $td $tf,
+    filter $td $tf;
+*/
+}
+
+.Post-header {
+  padding: 2rem;
+}
+
+.Post-heading {
+  margin: 0;
+  padding: 0;
+  font-size: 2.1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* .Option-content {
+} */
+
+.Post-items {
+  list-style: none;
+  margin: 0;
+  padding: 1rem 0;
+}
+
+.Post-item {
+  margin: 0;
+  padding: 1rem;
+  text-align: center;
+}
+
+.Posts:hover .Post {
+  opacity: 0.4;
+  filter: blur(1px);
+}
+
+.Posts .Post:hover {
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+  box-shadow: 0 4px 16px #ddd;
+  transform: scale(1.1);
+  filter: none;
+}
+
+.author {
+  color: #7279da;
+}
+
+.view-button {
+  color: #333;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.save-button {
+  color: #333;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.view-button:hover {
+  color: #7279da;
+}
+
+.save-button:hover {
+  color: #7279da;
+}
+
+.Post-controls {
+  display: flex;
 }
