@@ -1,13 +1,13 @@
 import React from 'react';
 import './PostView.css';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 class PostView extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      postID: this.props.postID, // We get the id from redux.
       postTitle: '',
       postIntro: '',
       postBody: '',
@@ -16,13 +16,13 @@ class PostView extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/getPost', { postID: this.state.postID })
-    .then(post => {
+    axios.get('/api/getPost/' + this.props.id)
+    .then(res => {
       this.setState({
-        postTitle: post.post_title,
-        postIntro: post.post_intro,
-        postBody: post.post_body,
-        postAuthor: post.post_author
+        postTitle: res.data[0].post_title,
+        postIntro: res.data[0].post_intro,
+        postBody: res.data[0].post_body,
+        postAuthor: res.data[0].post_author
       });
     });
   }
@@ -34,7 +34,7 @@ class PostView extends React.Component {
           <h1>{this.state.postTitle}</h1>
           <h2>{this.state.postIntro}</h2>
           <h4>{this.state.postBody}</h4>
-          <p>{this.state.postAuthor}</p>
+          <p>Author: {this.state.postAuthor}</p>
         </div>
       </div>
     );
@@ -43,7 +43,7 @@ class PostView extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    postID: postID
+    id: state.postID
   };
 }
 

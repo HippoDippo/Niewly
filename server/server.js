@@ -31,7 +31,6 @@ passport.use(new Auth0Strategy({
 }, function(accessToken, refreshToken, extraParams, profile, done) {
   const db = app.get('db');
 
-  console.log(profile);
   db.find_user([ profile.user_id ])
   .then(user => {
     if (user[0]) {
@@ -76,10 +75,10 @@ app.get('/auth/logout', (req, res) => {
   return res.redirect('http://localhost:3000/#/feed');
 });
 
-app.get('/api/getPost', (req, res) => {
+app.get('/api/getPost/:id', (req, res) => {
   const db = req.app.get('db');
 
-  db.get_post(req.body.postID)
+  db.get_post(req.params.id)
   .then(post => {
     res.status(200).send(post);
   });

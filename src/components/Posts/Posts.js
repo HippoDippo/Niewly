@@ -3,6 +3,7 @@ import './Posts.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { updatePostId } from '../../ducks/reducer';
+import { Link } from 'react-router-dom';
 
 class Posts extends React.Component {
   constructor(props) {
@@ -35,11 +36,11 @@ class Posts extends React.Component {
   //   axios.post('/api/bookmarks', {userID: this.state.userID, postID: selectedPost[0].id};
   // }
 
-  // handleClickView(i, event) {
-  //   When user clicks view button, set post id to redux store.
-  //   Then route to PostView component.
-  //   this.props.dispatch(updatePostId(i));
-  // }
+  handleClickView(i, event) {
+    // When user clicks view button, set post id to redux store.
+    // Then route to PostView component.
+    this.props.dispatch(updatePostId(i));
+  }
 
   render() {
 
@@ -50,6 +51,7 @@ class Posts extends React.Component {
                 {/* <p className="post-body">{arr[i].post_body}</p> */}
                 <p className="author">{arr[i].post_author}</p>
                 {/* <button onClick={this.handleClickSave.bind(this, arr[i].id)} className="save-button">Save</button> */}
+                <Link to="/postView" onClick={this.handleClickView.bind(this, arr[i].id)} className="view-button">View</Link>
               </div>
       );
     });
@@ -62,4 +64,10 @@ class Posts extends React.Component {
   }
 }
 
-export default connect()(Posts);
+function mapStateToProps(state) {
+  return {
+    postID: state.postID
+  }
+}
+
+export default connect(mapStateToProps)(Posts);

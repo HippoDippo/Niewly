@@ -37,7 +37,7 @@
     padding: 3px;
   }
 
-.save-button {
+.save-button, .view-button {
   color: #333;
   background-color: #fff;
   border: none;
@@ -49,7 +49,7 @@
   font-weight: 700;
 }
 
-.save-button:hover {
+.save-button, .view-button:hover {
   color: #fff;
   background-color: #7279da;
 }

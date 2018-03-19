@@ -9,7 +9,7 @@ export function updatePostId(postID) {
   return {
     type: UPDATE_POST_ID,
     payload: postID
-  }
+  };
 }
 
 // Reducer
