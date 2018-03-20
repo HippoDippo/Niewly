@@ -1,13 +1,13 @@
 import React from 'react';
-import './Parser.css';
+import './Rozetta.css';
 
-class Parser extends React.Component {
+class Rozetta extends React.Component {
 
   // let text = 'The code below is awesome: <<var name = "Kaycee";>> This is our other codeblock <<var name = "Will";>>';
 
   getNumberOfCodeblocks(text) {
-    text2 = text.split('');
-    var codeBlockCount = 0;
+    var text2 = text.split('')
+      , codeBlockCount = 0;
 
     for (var y = 0; y < text2.length; y++) {
       if (text2[y] === '<' && text2[y+1] === '<') {
@@ -50,9 +50,9 @@ class Parser extends React.Component {
   }
 
   getBodys(text, indexes) {
-    var postBodys = [];
+    var postBodys = []
+      , y = 0;
 
-    var y = 0;
     while (postBodys.length < indexes.length) {
       if (y === 0) {
         postBodys.push(text.slice(0, indexes[y][0] - 2));
@@ -65,12 +65,29 @@ class Parser extends React.Component {
   }
 
   render() {
+
+    let bodySections = (function rozetta(body) {
+      var sections = []
+        , bodies = getBodys(body, getIndexes(body))
+        , codeBlocks = getCodeBlocks(body, getIndexes(body));
+
+      for (;;) {
+        //
+      }
+
+      return (
+        <div className="post-body-sections">
+
+        </div>
+      );
+    })(this.props.body)
+
     return (
-      <div className="parser">
-        <h1>Parser</h1>
+      <div className="post-body">
+        {bodySections}
       </div>
     );
   }
 }
 
-export default Parser;
+export default Rozetta;
