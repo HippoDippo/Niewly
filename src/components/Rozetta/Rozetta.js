@@ -1,3 +1,4 @@
+// Author: Kaycee Ingram
 import React from 'react';
 import './Rozetta.css';
 
@@ -73,7 +74,7 @@ class Rozetta extends React.Component {
 
       for (var y = 0; y < bodies.length; y++) {
         setions.push(<div className="post-body-section">
-                       <h3 className="body">{bodies[y]}</h3>
+                       <h3 className="post-body">{bodies[y]}</h3>
                        <h3 className="code-block">{codeBlocks[y]}</h3>
                      </div>
         );
@@ -87,7 +88,7 @@ class Rozetta extends React.Component {
     })(this.props.body)
 
     return (
-      <div className="post-body">
+      <div className="body">
         {bodySections}
       </div>
     );
