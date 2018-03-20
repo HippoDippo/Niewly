@@ -35,6 +35,7 @@ class PostView extends React.Component {
           <h1>{this.state.postTitle}</h1>
           <h2>{this.state.postIntro}</h2>
           <h4>{this.state.postBody}</h4>
+          {/* <Parser body={this.state.postBody} /> It will return with styled body (codeblocks). */}
           <p>Author: {this.state.postAuthor}</p>
           <button>Save</button>
           <Link to="/">Back</Link>
