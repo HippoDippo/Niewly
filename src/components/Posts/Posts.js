@@ -32,7 +32,6 @@ class Posts extends React.Component {
     let selectedPost = this.state.posts.filter(post => {
       return post.id === i;
     });
-    axios.post('/api/bookmarks', {userID: this.state.userID, titleText: selectedPost[0].post_title, introText: selectedPost[0].post_intro, bodyText: selectedPost[0].post_body});
     axios.post('/api/bookmarks', {userID: this.state.userID, postID: selectedPost[0].id});
   }
 
