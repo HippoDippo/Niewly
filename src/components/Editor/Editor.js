@@ -7,12 +7,29 @@ class Editor extends React.Component {
     super(props);
 
     this.state = {
+      userID: 0,
+      author: '',
       editorInput: '',
       post: ''
     };
 
     this.handleEditorInput = this.handleEditorInput.bind(this);
     this.handleEditorClick = this.handleEditorClick.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get('/auth/me')
+    .then(res => {
+      this.setState({
+        userID: extractID(res.data.auth_id),
+        author: res.data.user_name
+      });
+    });
+  }
+
+  extractID(str) {
+    var start = str.indexOf('|');
+    return Number(str.slice(start+1, str.length-11));
   }
 
   getTitleIndex(text) {
@@ -87,7 +104,8 @@ class Editor extends React.Component {
       post: extractContents(this.state.editorInput)
     });
     let { post } = this.state.post;
-    axios.post('/api/createPost', { title: post.title, intro: post.intro, body: post.body, author: post.author, etc })
+    axios.post('/api/createPost', { user_id: this.state.userID, title: post.title, intro: post.intro, author: this.state.author, body: post.body })
+    // user_id, post_title, post_intro, post_author, post_body
   }
 
   render() {
@@ -104,8 +122,3 @@ class Editor extends React.Component {
     );
   }
 }
-
-// function extractID(str) {
-//   var start = str.indexOf('|');
-//   return Number(str.slice(start+1, str.length-11));
-// }

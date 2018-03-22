@@ -92,7 +92,12 @@ app.get('/api/getPosts', (req, res) => {
     res.status(200).send(posts);
   });
 })
-// app.post();
+
+app.post('/api/createPost', (req, res) => {
+  const db = req.app.get('db');
+
+  db.create_post(req.body.user_id, req.body.title, req.body.intro, req.body.author, req.body.body);
+});
 // app.put();
 // app.delete();
 
