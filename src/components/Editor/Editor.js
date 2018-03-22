@@ -15,13 +15,14 @@ class Editor extends React.Component {
 
     this.handleEditorInput = this.handleEditorInput.bind(this);
     this.handleEditorClick = this.handleEditorClick.bind(this);
+    this.extractContents = this.extractContents.bind(this);
   }
 
   componentDidMount() {
     axios.get('/auth/me')
     .then(res => {
       this.setState({
-        userID: extractID(res.data.auth_id),
+        userID: this.extractID(res.data.auth_id),
         author: res.data.user_name
       });
     });
@@ -36,7 +37,7 @@ class Editor extends React.Component {
     var textCpy = text.split(' ');
 
     textCpy.shift(); // Remove first #.
-    console.log(textCpy);
+
     return {
       start: 1,
       end: textCpy.indexOf('#') + 1
@@ -77,9 +78,9 @@ class Editor extends React.Component {
   }
 
   extractContents(text) {
-    var titleIndexes = getTitleIndex(text)
-     , introIndexes = getIntroIndex(text)
-     , bodyIndexes = getBodyIndex(text)
+    var titleIndexes = this.getTitleIndex(text)
+     , introIndexes = this.getIntroIndex(text)
+     , bodyIndexes = this.getBodyIndex(text)
      , textCpy = text.split(' ');
 
     var title = textCpy.slice(titleIndexes.start, titleIndexes.end)
@@ -94,16 +95,24 @@ class Editor extends React.Component {
   }
 
   handleEditorInput(event) {
+    // console.log(event.target.value);
+    // console.log(event.target.value.includes('\n'));
     this.setState({
       editorInput: event.target.value
     });
   }
 
+  replaceAll(str, char, replaceChar) {
+    while (str.includes(char)) str = str.replace(char, replaceChar);
+    return str;
+  }
+
   handleEditorClick() {
+    let post = this.extractContents(this.replaceAll(this.state.editorInput, '\n', ' '));
     this.setState({
-      post: extractContents(this.state.editorInput)
+      editorInput: ''
     });
-    let { post } = this.state.post;
+    console.log(post);
     axios.post('/api/createPost', { user_id: this.state.userID, title: post.title, intro: post.intro, author: this.state.author, body: post.body })
   }
 
@@ -112,7 +121,7 @@ class Editor extends React.Component {
     return (
       <div className="editor">
         <div>
-          <textarea onChange={(e) => this.handleEditorInput(e)} className="input"/>
+          <textarea value={this.state.editorInput} onChange={(e) => this.handleEditorInput(e)} className="input"/>
         </div>
         <div>
           <button onClick={this.handleEditorClick} className="button">Post</button>
@@ -121,3 +130,5 @@ class Editor extends React.Component {
     );
   }
 }
+
+export default Editor;

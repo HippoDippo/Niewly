@@ -1,13 +1,19 @@
 .body {
-  /*  */
+  display: flex;
+  justify-content: center;
 }
 
 .post-body {
-  /*  */
+  padding: 7px;
+  margin: 3px;
 }
 
 .code-block {
-  /*  */
+  background-color: #eee;
+  font-family: monospace;
+  padding: 11px;
+  margin: 7px;
+  border-radius: 2px;
 }
 
 .post-body-sections {

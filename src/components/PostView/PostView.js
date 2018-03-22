@@ -36,7 +36,7 @@ class PostView extends React.Component {
         <div className="post">
           <h1>{this.state.postTitle}</h1>
           <h2>{this.state.postIntro}</h2>
-          <Rozetta body={this.state.postBody} />
+          <Rozetta body={this.state.postBody} /> {/* postBody undefined ? */}
           <p>Author: {this.state.postAuthor}</p>
           <button>Save</button>
           <Link to="/">Back</Link>

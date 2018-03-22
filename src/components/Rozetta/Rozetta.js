@@ -3,8 +3,15 @@ import React from 'react';
 import './Rozetta.css';
 
 class Rozetta extends React.Component {
+  constructor(props) {
+    super(props);
 
-  // let text = 'The code below is awesome: <<var name = "Kaycee";>> This is our other codeblock <<var name = "Will";>>';
+    this.getIndexes = this.getIndexes.bind(this);
+    this.getBodys = this.getBodys.bind(this);
+    this.getCodeBlocks = this.getCodeBlocks.bind(this);
+    this.rozetta = this.rozetta.bind(this);
+  }
+
 
   getNumberOfCodeblocks(text) {
     var text2 = text.split('')
@@ -28,7 +35,7 @@ class Rozetta extends React.Component {
   }
 
   getIndexes(text) {
-    var indexes = makeIndexArray(getNumberOfCodeblocks(text));
+    var indexes = this.makeIndexArray(this.getNumberOfCodeblocks(text));
 
     for (var y = 0, x = 0; y < text.length; y++) {
       if (text[y] === '<' && text[y+1] === '<') {
@@ -65,31 +72,33 @@ class Rozetta extends React.Component {
     return postBodys;
   }
 
+  rozetta(body) {
+    var sections = []
+      , bodies = this.getBodys(body, this.getIndexes(body))
+      , codeBlocks = this.getCodeBlocks(body, this.getIndexes(body));
+
+    for (var y = 0; y < bodies.length; y++) {
+      sections.push(<div className="post-body-section">
+                     <h3 className="post-body">{bodies[y]}</h3>
+                     <h3 className="code-block">{codeBlocks[y]}</h3>
+                   </div>
+      );
+    }
+
+    return (
+      <div className="post-body-sections">
+        {sections}
+      </div>
+    );
+  }
+
   render() {
 
-    let bodySections = (function rozetta(body) {
-      var sections = []
-        , bodies = getBodys(body, getIndexes(body))
-        , codeBlocks = getCodeBlocks(body, getIndexes(body));
-
-      for (var y = 0; y < bodies.length; y++) {
-        setions.push(<div className="post-body-section">
-                       <h3 className="post-body">{bodies[y]}</h3>
-                       <h3 className="code-block">{codeBlocks[y]}</h3>
-                     </div>
-        );
-      }
-
-      return (
-        <div className="post-body-sections">
-          {sections}
-        </div>
-      );
-    })(this.props.body)
+    let bodySections = this.rozetta(this.props.body); // out of scope because of render ?
 
     return (
       <div className="body">
-        {bodySections}
+        { bodySections ? bodySections : this.props.body }
       </div>
     );
   }

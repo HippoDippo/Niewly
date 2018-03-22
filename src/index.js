@@ -6,12 +6,10 @@ import { HashRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './ducks/store';
 
-import Parser from './components/Parser/Parser';
-
 ReactDOM.render(
   <Router>
     <Provider store={store}>
-      <Parser />
+      <App />
     </Provider>
   </Router>,
   document.getElementById('root')
