@@ -94,7 +94,7 @@ class Rozetta extends React.Component {
 
   render() {
 
-    let bodySections = this.rozetta(this.props.body); // out of scope because of render ?
+    let bodySections = this.rozetta(this.props.body);
 
     return (
       <div className="body">
