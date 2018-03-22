@@ -105,7 +105,6 @@ class Editor extends React.Component {
     });
     let { post } = this.state.post;
     axios.post('/api/createPost', { user_id: this.state.userID, title: post.title, intro: post.intro, author: this.state.author, body: post.body })
-    // user_id, post_title, post_intro, post_author, post_body
   }
 
   render() {
