@@ -4,12 +4,14 @@
 }
 
 .post-body {
+  font-size: 17px;
   padding: 7px;
   margin: 3px;
 }
 
 .code-block {
   background-color: #eee;
+  font-size: 17px;
   font-family: monospace;
   padding: 11px;
   margin: 7px;

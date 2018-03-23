@@ -77,6 +77,14 @@ class Rozetta extends React.Component {
       , bodies = this.getBodys(body, this.getIndexes(body))
       , codeBlocks = this.getCodeBlocks(body, this.getIndexes(body));
 
+    if (!body.includes('<<')) {
+      return (
+        <div className="post-body-sections">
+          {body}
+        </div>
+      );
+    }
+
     for (var y = 0; y < bodies.length; y++) {
       sections.push(<div className="post-body-section">
                      <h3 className="post-body">{bodies[y]}</h3>

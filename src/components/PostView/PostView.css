@@ -1,3 +1,8 @@
+.post-view {
+  margin-left: 333px;
+  margin-right: 333px;
+}
+
 .post {
   display: flex;
   flex-direction: column;
@@ -5,4 +10,57 @@
   justify-content: center;
   padding: 7px;
   margin: 7px;
+}
+
+.post-title {
+  font-size: 45px;
+  margin: 14px;
+}
+
+.post-intro {
+  font-size: 33px;
+  margin: 14px 7px;
+}
+
+.post-author {
+  margin-top: 23px;
+  margin-bottom: 23px;
+}
+
+.post-buttons {
+  display: flex;
+}
+
+.post-save-button {
+  color: #fff;
+  background-color: #333;
+  border: 3px solid #333;
+  border-radius: 2px;
+  padding: 5px;
+  margin-top: 7px;
+  margin-left: 14px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.post-save-button:hover {
+  color: #333;
+  background-color: #fff;
+}
+
+.post-back-button {
+  color: #fff;
+  background-color: #333;
+  border: 3px solid #333;
+  border-radius: 2px;
+  padding: 5px;
+  margin-top: 7px;
+  margin-right: 14px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.post-back-button:hover {
+  color: #333;
+  background-color: #fff;
 }

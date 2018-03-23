@@ -1,50 +1,3 @@
-/* .posts {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 33px;
-}
-
-  .post {
-    height: 500px;
-    width: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #e4e4f7;
-    border-radius: 3px;
-    padding: 7px;
-    margin: 14px;
-    box-shadow: 0 3px 3px #bbb;
-  }
-
-  .post-title {
-    font-size: 33px;
-  }
-
-  .post-intro {
-    font-size: 25px;
-  }
-
-  .post-body {
-    font-size: 23px;
-    max-width: 700px;
-    width: 300px;
-    align-items: center;
-    justify-content: center;
-    padding: 3px;
-  }
-
-.author {
-  font-size: 16px;
-  align-items: center;
-  justify-content: center;
-  padding: 3px;
-} */
-
-
 @import url('https://fonts.googleapis.com/css?family=Mukta:300,400,700');
 
 *,
@@ -53,54 +6,50 @@
   box-sizing: border-box;
 }
 
-/* html {
-  font-size: 10px;
-} */
-
-/*
-'Mukta'
-$td: 250ms;
-$tf: cubic-bezier(0.68, -0.55, 0.265, 1.55); */
-
 .Posts {
   display: flex;
   flex-direction: column;
-  margin: 33px auto;
+  margin: 45px auto;
   max-width: 33rem;
 }
 
 .Post {
+  display: flex;
+  flex-direction: column;
   flex: 1;
   background-color: #fff;
   cursor: pointer;
   transform-origin: 50% 50%;
-  /* transition:
-    transform $td $tf,
-    opacity $td $tf,
-    box-shadow $td $tf,
-    filter $td $tf;
-*/
+  align-items: center;
+  margin-bottom: 7px;
 }
 
 .Post-header {
-  padding: 2rem;
+  padding: .7rem;
 }
 
 .Post-heading {
   margin: 0;
-  padding: 0;
-  font-size: 2.1rem;
+  padding: 7px 0;
+  font-size: 2.2rem;
   font-weight: 700;
   text-align: center;
 }
 
-/* .Option-content {
-} */
+.Post-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .Post-items {
   list-style: none;
   margin: 0;
   padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .Post-item {
@@ -124,6 +73,7 @@ $tf: cubic-bezier(0.68, -0.55, 0.265, 1.55); */
 }
 
 .author {
+  font-size: 17px;
   color: #7279da;
 }
 
@@ -148,5 +98,13 @@ $tf: cubic-bezier(0.68, -0.55, 0.265, 1.55); */
 }
 
 .Post-controls {
+  display: flex;
+}
+
+.Post-intro {
+  font-size: 23px;
+}
+
+.Post-buttons {
   display: flex;
 }
