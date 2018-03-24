@@ -1,0 +1,1 @@
+-- Database join between posts and users table, to pull bookmarks.

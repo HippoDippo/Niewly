@@ -93,6 +93,15 @@ app.get('/api/getPosts', (req, res) => {
   });
 })
 
+app.get('/api/bookmarks/:userId/:postId', (req, res) => {
+  const db = req.app.get('db');
+
+  db.get_all_bookmarks(req.params.userId, req.params.postId)
+  .then(bookmarks => {
+    res.status(200).send(bookmarks);
+  });
+});
+
 app.post('/api/createPost', (req, res) => {
   const db = req.app.get('db');
 

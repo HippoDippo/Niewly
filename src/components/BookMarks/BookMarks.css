@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css?family=Mukta:300,400,700');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.Posts {
+  display: flex;
+  flex-direction: column;
+  margin: 45px auto;
+  max-width: 33rem;
+}
+
+.Post {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: #fff;
+  cursor: pointer;
+  transform-origin: 50% 50%;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.Post-header {
+  padding: .7rem;
+}
+
+.Post-heading {
+  margin: 0;
+  padding: 7px 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.Post-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Post-items {
+  list-style: none;
+  margin: 0;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Post-item {
+  margin: 0;
+  padding: 1rem;
+  text-align: center;
+}
+
+.Posts:hover .Post {
+  opacity: 0.4;
+  filter: blur(1px);
+}
+
+.Posts .Post:hover {
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+  box-shadow: 0 4px 16px #ddd;
+  transform: scale(1.1);
+  filter: none;
+}
+
+.author {
+  font-size: 17px;
+  color: #7279da;
+}
+
+.view-button {
+  color: #333;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.save-button {
+  color: #333;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.view-button:hover {
+  color: #7279da;
+}
+
+.save-button:hover {
+  color: #7279da;
+}
+
+.Post-controls {
+  display: flex;
+}
+
+.Post-intro {
+  font-size: 23px;
+}
+
+.Post-buttons {
+  display: flex;
+}
