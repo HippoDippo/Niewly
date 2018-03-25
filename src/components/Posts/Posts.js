@@ -11,7 +11,7 @@ class Posts extends React.Component {
 
     this.state = {
       posts: [],
-      userID: ''
+      userID: 0
     }
   }
 
@@ -26,13 +26,14 @@ class Posts extends React.Component {
         userID: authRes.data.user_id
       });
     }));
+    console.log(typeof this.state.userID);
   }
 
   handleClickSave(i, event) {
     let selectedPost = this.state.posts.filter(post => {
       return post.id === i;
     });
-    axios.post('/api/bookmarks', {userID: this.state.userID, postID: selectedPost[0].id});
+    axios.post('/api/createBookmark', {user_id: this.state.userID, post_id: i});
   }
 
   handleClickView(i, event) {

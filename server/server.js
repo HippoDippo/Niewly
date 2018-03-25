@@ -93,10 +93,10 @@ app.get('/api/getPosts', (req, res) => {
   });
 })
 
-app.get('/api/bookmarks/:userId/:postId', (req, res) => {
+app.get('/api/getBookmarks/:userId', (req, res) => {
   const db = req.app.get('db');
 
-  db.get_all_bookmarks(req.params.userId, req.params.postId)
+  db.get_all_bookmarks(req.params.userId)
   .then(bookmarks => {
     res.status(200).send(bookmarks);
   });
@@ -107,6 +107,13 @@ app.post('/api/createPost', (req, res) => {
 
   db.create_post(req.body.user_id, req.body.title, req.body.intro, req.body.author, req.body.body);
 });
+
+app.post('/api/createBookmark', (req, res) => {
+  const db = req.app.get('db');
+
+  db.create_bookmark(req.body.user_id, req.body.post_id);
+});
+
 // app.put();
 // app.delete();
 

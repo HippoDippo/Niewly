@@ -1,1 +1,2 @@
--- Database join between posts and users table, to pull bookmarks.
+SELECT * FROM bookmarks
+WHERE user_id = $1;

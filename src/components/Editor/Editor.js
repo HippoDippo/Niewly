@@ -22,16 +22,16 @@ class Editor extends React.Component {
     axios.get('/auth/me')
     .then(res => {
       this.setState({
-        userID: this.extractID(res.data.auth_id),
+        userID: res.data.id,
         author: res.data.user_name
       });
     });
   }
 
-  extractID(str) {
-    var start = str.indexOf('|');
-    return Number(str.slice(start+1, str.length-11));
-  }
+  // extractID(str) {
+  //   var start = str.indexOf('|');
+  //   return Number(str.slice(start+1, str.length-11));
+  // }
 
   getTitleIndex(text) {
     var textCpy = text.split(' ');
@@ -95,8 +95,6 @@ class Editor extends React.Component {
   }
 
   handleEditorInput(event) {
-    // console.log(event.target.value);
-    // console.log(event.target.value.includes('\n'));
     this.setState({
       editorInput: event.target.value
     });

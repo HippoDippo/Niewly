@@ -8,27 +8,23 @@ class BookMarks extends React.Component {
     super(props);
 
     this.state = {
-      userID: '',
+      userID: 0,
       bookmarks: []
     }
   }
 
-  extractID(str) {
-    var start = str.indexOf('|');
-    return Number(str.slice(start+1, str.length-11));
-  }
-
   componentDidMount() {
     axios.all([
-      axios.get('/api/bookmarks/' + this.state.userID),
+      axios.get('/api/getBookmarks/' + this.state.userID),
       axios.get('/auth/me')
     ])
     .then(axios.spread((bookmarkRes, authRes) => {
       this.setState({
         bookmarks: [...bookmarkRes.data],
-        userID: this.extractID(authRes.data.user_id)
+        userID: authRes.data.user_id
       });
     }));
+    console.log(this.state.bookmarks);
   }
 
   render() {
