@@ -4,6 +4,8 @@ import './App.css';
 import axios from 'axios';
 import NavBar from './components/NavBar/NavBar';
 import Routes from './routes';
+import { connect } from 'react-redux';
+import { updateUserId } from './ducks/reducer';
 
 class App extends Component {
   constructor(props) {
@@ -17,6 +19,7 @@ class App extends Component {
   componentDidMount() {
     axios.get('/auth/me')
     .then(res => {
+      // this.props.dispatch(updateUserId(res.data.id));
       this.setState({
         user: res.data.user_name
       });
@@ -33,4 +36,8 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps)(App);

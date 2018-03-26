@@ -26,7 +26,6 @@ class Posts extends React.Component {
         userID: authRes.data.user_id
       });
     }));
-    console.log(typeof this.state.userID);
   }
 
   handleClickSave(i, event) {
