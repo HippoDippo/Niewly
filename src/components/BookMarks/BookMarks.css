@@ -83,7 +83,7 @@
   text-decoration: none;
 }
 
-.save-button {
+.delete-button {
   color: #333;
   list-style-type: none;
   text-decoration: none;
@@ -93,7 +93,7 @@
   color: #7279da;
 }
 
-.save-button:hover {
+.delete-button:hover {
   color: #7279da;
 }
 
