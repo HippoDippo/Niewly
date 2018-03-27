@@ -23,7 +23,7 @@ class Posts extends React.Component {
     .then(axios.spread((postRes, authRes) => {
       this.setState({
         posts: [...postRes.data],
-        userID: authRes.data.user_id
+        userID: authRes.data.id
       });
     }));
   }
@@ -32,7 +32,7 @@ class Posts extends React.Component {
     let selectedPost = this.state.posts.filter(post => {
       return post.id === i;
     });
-    axios.post('/api/createBookmark', {user_id: this.state.userID, post_id: i});
+    axios.post('/api/createBookmark', {user_id: this.props.userID, post_id: i});
   }
 
   handleClickView(i, event) {
@@ -40,7 +40,7 @@ class Posts extends React.Component {
   }
 
   render() {
-
+    console.log('Render Method' + this.state.userID);
     let userPosts = this.state.posts.map((e, i, arr) => {
       return (<div key={arr[i].id} id={arr[i].id} className="Post">
                 <div className="Post-header">
@@ -70,6 +70,7 @@ class Posts extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    userID: state.userID,
     postID: state.postID
   }
 }

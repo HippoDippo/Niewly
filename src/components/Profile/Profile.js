@@ -1,6 +1,8 @@
 import React from 'react';
 import './Profile.css';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { updateUserId } from '../../ducks/reducer';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -8,7 +10,8 @@ class Profile extends React.Component {
 
     this.state = {
       userName: '',
-      userImg: ''
+      userImg: '',
+      userID: 0
     }
   }
 
@@ -17,7 +20,8 @@ class Profile extends React.Component {
     .then(res => {
       this.setState({
         userName: res.data.user_name,
-        userImg: res.data.img
+        userImg: res.data.img,
+        userID: res.data.id
       });
     });
   }
@@ -25,6 +29,9 @@ class Profile extends React.Component {
   render() {
     let { userName } = this.state;
     let { userImg } = this.state;
+    let { userID } = this.state;
+
+    this.props.dispatch(updateUserId(userID));
 
     return (
       <div className="profile">
@@ -37,4 +44,8 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps)(Profile);
