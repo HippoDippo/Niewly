@@ -115,7 +115,12 @@ app.post('/api/createBookmark', (req, res) => {
 });
 
 // app.put();
-// app.delete();
+
+app.delete('/api/deleteBookmark/:id', (req, res) => {
+  const db = req.app.get('db');
+
+  db.delete_bookmark(req.body.user_id, req.body.post_id);
+});
 
 massive(CONNECTION_STRING)
 .then(db => {
