@@ -3,6 +3,7 @@ import './BookMarks.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { updatePostId } from '../../ducks/reducer';
 
 class BookMarks extends React.Component {
   constructor(props) {
@@ -11,25 +12,46 @@ class BookMarks extends React.Component {
     this.state = {
       bookmarks: []
     }
+
+    this.getAllSavedPosts = this.getAllSavedPosts.bind(this);
   }
 
-  componentDidMount() {
-    axios.get('/api/getBookmarks/' + this.props.userID)
-    .then(bookmarksRes => {
-      axios.get('/api/getPost/' + bookmarksRes.data[0].post_id)
+  getAllSavedPosts(bookmarksRes) {
+    for (var y = 0; y < bookmarksRes.data.length; y++) {
+      axios.get('/api/getPost/' + bookmarksRes.data[y].post_id)
       .then(postsRes => {
         this.setState({
           bookmarks: [...postsRes.data]
         });
       });
+    }
+  }
+
+  componentDidMount() {
+    axios.get('/api/getBookmarks/' + this.props.userID)
+    .then(bookmarksRes => {
+      this.getAllSavedPosts(bookmarksRes);
     });
   }
 
+  // componentDidMount() {
+  //   axios.get('/api/getBookmarks/' + this.props.userID)
+  //   .then(bookmarksRes => {
+  //     let bookmarks = bookmarksRes.data.map((e, i, arr) => arr[i].post_id); // Get all post ids.
+  //     axios.get('/api/getPost/' + bookmarks)
+  //     .then(postsRes => {
+  //       this.setState({
+  //         bookmarks: [...postsRes.data]
+  //       });
+  //     });
+  //   });
+  // }
+
   handleClickDelete(i, event) {
-    let selectedPost = this.state.posts.filter(post => {
+    let selectedPost = this.state.bookmarks.filter(post => {
       return post.id === i;
     });
-    axios.delete('/api/deleteBookmark', {user_id: this.props.userID, post_id: i});
+    axios.delete('/api/deleteBookmark', { user_id: this.props.userID, post_id: i });
   }
 
   handleClickView(i, event) {
@@ -58,7 +80,7 @@ class BookMarks extends React.Component {
     });
 
     return (
-      <div className="bookmarks">
+      <div className="Posts">
         {userBookmarks}
       </div>
     );
