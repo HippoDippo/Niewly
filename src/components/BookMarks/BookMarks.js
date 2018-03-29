@@ -17,12 +17,17 @@ class BookMarks extends React.Component {
   }
 
   getAllSavedPosts(bookmarksRes) {
+    let bookmarks = [], bookmarkIds = [];
     for (var y = 0; y < bookmarksRes.data.length; y++) {
       axios.get('/api/getPost/' + bookmarksRes.data[y].post_id)
       .then(postsRes => {
-        this.setState({
-          bookmarks: [...postsRes.data]
-        });
+        if (y > 0 && !bookmarkIds.includes(postsRes.data[0].id)) { // Prevent same posts from being saved more than once.
+          bookmarkIds.push(postsRes.data[0].id);
+          bookmarks.push(postsRes.data[0])
+          this.setState({
+            bookmarks: [...bookmarks]
+          });
+        }
       });
     }
   }
@@ -33,19 +38,6 @@ class BookMarks extends React.Component {
       this.getAllSavedPosts(bookmarksRes);
     });
   }
-
-  // componentDidMount() {
-  //   axios.get('/api/getBookmarks/' + this.props.userID)
-  //   .then(bookmarksRes => {
-  //     let bookmarks = bookmarksRes.data.map((e, i, arr) => arr[i].post_id); // Get all post ids.
-  //     axios.get('/api/getPost/' + bookmarks)
-  //     .then(postsRes => {
-  //       this.setState({
-  //         bookmarks: [...postsRes.data]
-  //       });
-  //     });
-  //   });
-  // }
 
   handleClickDelete(i, event) {
     let selectedPost = this.state.bookmarks.filter(post => {
@@ -59,7 +51,6 @@ class BookMarks extends React.Component {
   }
 
   render() {
-
     let userBookmarks = this.state.bookmarks.map((e, i, arr) => {
       return (<div key={arr[i].id} id={arr[i].id} className="Post">
                 <div className="Post-header">
