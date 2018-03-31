@@ -3,7 +3,7 @@ import './BookMarks.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updatePostId } from '../../ducks/reducer';
+import { updatePostId, updateBackBtnRoute } from '../../ducks/reducer';
 
 class BookMarks extends React.Component {
   constructor(props) {
@@ -40,10 +40,7 @@ class BookMarks extends React.Component {
   }
 
   handleClickDelete(i, event) {
-    let selectedPost = this.state.bookmarks.filter(post => {
-      return post.id === i;
-    });
-    axios.delete('/api/deleteBookmark', { user_id: this.props.userID, post_id: i });
+    axios.delete('/api/deleteBookmark/' + this.props.userID + '/' + i);
   }
 
   handleClickView(i, event) {

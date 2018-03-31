@@ -2,7 +2,7 @@ import React from 'react';
 import './Posts.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { updatePostId } from '../../ducks/reducer';
+import { updatePostId, updateBackBtnRoute } from '../../ducks/reducer';
 import { Link } from 'react-router-dom';
 
 class Posts extends React.Component {
@@ -40,7 +40,6 @@ class Posts extends React.Component {
   }
 
   render() {
-    console.log('Render Method' + this.state.userID);
     let userPosts = this.state.posts.map((e, i, arr) => {
       return (<div key={arr[i].id} id={arr[i].id} className="Post">
                 <div className="Post-header">
