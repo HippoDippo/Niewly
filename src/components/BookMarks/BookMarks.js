@@ -32,6 +32,17 @@ class BookMarks extends React.Component {
     }
   }
 
+  objSplice(bookmarks, id) {
+    let index;
+
+    for (var y = 0; y < bookmarks.length; y++) {
+      if (bookmarks[y].id === id) {
+        index = y;
+      }
+    }
+    bookmarks.splice(index, 1);
+  }
+
   componentDidMount() {
     axios.get('/api/getBookmarks/' + this.props.userID)
     .then(bookmarksRes => {
@@ -39,8 +50,17 @@ class BookMarks extends React.Component {
     });
   }
 
+
+
   handleClickDelete(i, event) {
+    console.log(this.state.bookmarks);
     axios.delete('/api/deleteBookmark/' + this.props.userID + '/' + i);
+
+    let updatedBookmarks = this.state.bookmarks;
+    this.objSplice(updatedBookmarks, i);
+    this.setState({
+      bookmarks: updatedBookmarks
+    });
   }
 
   handleClickView(i, event) {
