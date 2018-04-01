@@ -11,17 +11,16 @@
     width: 100px;
     border-radius: 7px;
     background-color: #7279da;
-    box-shadow: 0 7px 7px #bbb;
 }
 
-.Posts {
+.Users {
   display: flex;
   flex-direction: column;
   margin: 45px auto;
   max-width: 33rem;
 }
 
-.Post {
+.User {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -33,11 +32,11 @@
   border: 1px solid #333;
 }
 
-.Post-header {
+.User-header {
   padding: .7rem;
 }
 
-.Post-heading {
+.User-heading {
   margin: 0;
   padding: 7px 0;
   font-size: 2.2rem;
@@ -45,13 +44,13 @@
   text-align: center;
 }
 
-.Post-content {
+.User-content {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.Post-items {
+.User-items {
   list-style: none;
   margin: 0;
   padding: 1rem 0;
@@ -61,18 +60,18 @@
   justify-content: center;
 }
 
-.Post-item {
+.User-item {
   margin: 0;
   padding: 1rem;
   text-align: center;
 }
 
-.Posts:hover .Post {
+.Users:hover .User {
   opacity: 0.4;
   filter: blur(1px);
 }
 
-.Posts .Post:hover {
+.Users .User:hover {
   position: relative;
   z-index: 2;
   opacity: 1;
@@ -86,34 +85,16 @@
   color: #7279da;
 }
 
-.view-button {
+.follow-button {
   color: #333;
   list-style-type: none;
   text-decoration: none;
 }
 
-.save-button {
-  color: #333;
-  list-style-type: none;
-  text-decoration: none;
-}
-
-.view-button:hover {
+.follow-button:hover {
   color: #7279da;
 }
 
-.save-button:hover {
-  color: #7279da;
-}
-
-.Post-controls {
-  display: flex;
-}
-
-.Post-intro {
-  font-size: 23px;
-}
-
-.Post-buttons {
+.User-buttons {
   display: flex;
 }

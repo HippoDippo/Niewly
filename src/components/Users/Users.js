@@ -28,15 +28,15 @@ class Users extends React.Component {
   render() {
 
     let users = this.state.users.map((e, i, arr) => {
-      return (<div key={arr[i].id} id={arr[i].id} className="Post">
-                <div className="Post-header">
-                  <h2 className="Post-heading">{arr[i].user_name}</h2>
-                  <img className="profile-img" src={arr[i].img} alt="profile-img"/>
+      return (<div key={arr[i].id} id={arr[i].id} className="User">
+                <div className="User-header">
+                  <h2 className="User-heading">{arr[i].user_name}</h2>
+                  <img className="profile-img" src={arr[i].img} alt="profile image"/>
                 </div>
-                <div className="Post-content">
-                  <ul className="Post-items">
-                    <div className="Post-buttons">
-                      <li onClick={this.handleFollowSave.bind(this, arr[i].id)} className="Post-item save-button">Follow</li>
+                <div className="User-content">
+                  <ul className="User-items">
+                    <div className="User-buttons">
+                      <li onClick={this.handleFollowSave.bind(this, arr[i].id)} className="Post-item follow-button">Follow</li>
                     </div>
                   </ul>
                 </div>
@@ -45,7 +45,7 @@ class Users extends React.Component {
     });
 
     return (
-      <div className="Posts">
+      <div className="Users">
         {users}
       </div>
     );
