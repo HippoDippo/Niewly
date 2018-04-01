@@ -75,6 +75,15 @@ app.get('/auth/logout', (req, res) => {
   return res.redirect('http://localhost:3000/#/feed');
 });
 
+app.get('/api/getAllUsers', (req, res) => {
+  const db = req.app.get('db');
+
+  db.get_all_users()
+  .then(users => {
+    res.status(200).send(users);
+  });
+});
+
 app.get('/api/getPost/:id', (req, res) => {
   const db = req.app.get('db');
 
