@@ -114,6 +114,15 @@ app.get('/api/getPosts', (req, res) => {
   });
 })
 
+app.get('/api/getOurPosts/:id', (req, res) => {
+  const db = req.app.get('db');
+
+  db.get_our_posts(req.params.id)
+  .then(posts => {
+    res.status(200).send(posts);
+  });
+});
+
 app.get('/api/getSavedPosts/:ids', (req, res) => {
   const db = req.app.get('db');
 
