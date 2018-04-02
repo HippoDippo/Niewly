@@ -1,6 +1,8 @@
 import React from 'react';
 import './Users.css';
 import axios from 'axios';
+// import Search from '../Search/Search';
+import { connect } from 'react-redux';
 
 class Users extends React.Component {
   constructor(props) {
@@ -8,7 +10,10 @@ class Users extends React.Component {
 
     this.state = {
       users: []
+      // searchInput: ''
     };
+
+    // this.handleSearchInput = this.handleSearchInput.bind(this);
   }
 
   componentDidMount() {
@@ -20,10 +25,16 @@ class Users extends React.Component {
     });
   }
 
-  handleFollowSave() {
+  handleFollowClick() {
     //
     console.log('Followed!');
   }
+
+  // handleSearchInput(event) {
+  //   this.setState({
+  //     searchInput: event.target.value
+  //   });
+  // }
 
   render() {
 
@@ -36,7 +47,7 @@ class Users extends React.Component {
                 <div className="User-content">
                   <ul className="User-items">
                     <div className="User-buttons">
-                      <li onClick={this.handleFollowSave.bind(this, arr[i].id)} className="Post-item follow-button">Follow</li>
+                      { this.props.userID ? <li onClick={this.handleFollowClick.bind(this, arr[i].id)} className="Post-item follow-button">Follow</li> : null }
                     </div>
                   </ul>
                 </div>
@@ -46,10 +57,19 @@ class Users extends React.Component {
 
     return (
       <div className="Users">
+        {/* <input value={this.state.searchInput} onChange={(e) => this.handleSearchInput(e)} />
+        {<Search /> ? <Search /> : users}
+        <Search searchInput={this.state.searchInput}/> */}
         {users}
       </div>
     );
   }
 }
 
-export default Users;
+function mapStateToProps(state) {
+  return {
+    userID: state.userID
+  };
+}
+
+export default connect(mapStateToProps)(Users);

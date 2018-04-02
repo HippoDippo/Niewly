@@ -80,7 +80,19 @@ app.get('/api/getAllUsers', (req, res) => {
 
   db.get_all_users()
   .then(users => {
-    res.status(200).send(users);
+    if (users)
+      res.status(200).send(users);
+    else
+      res.status(404).send('not found');
+  });
+});
+
+app.get('/api/searchusers/:username', (req, res) => {
+  const db = req.app.get('db');
+
+  db.search_for_users(req.params.username)
+  .then(res => {
+    res.status(200).send(res);
   });
 });
 

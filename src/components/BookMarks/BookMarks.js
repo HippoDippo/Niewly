@@ -10,7 +10,8 @@ class BookMarks extends React.Component {
     super(props);
 
     this.state = {
-      bookmarks: []
+      bookmarks: [],
+      userID: 0
     }
 
     this.getAllSavedPosts = this.getAllSavedPosts.bind(this);
@@ -48,13 +49,16 @@ class BookMarks extends React.Component {
     .then(bookmarksRes => {
       this.getAllSavedPosts(bookmarksRes);
     });
+    this.setState({
+      userID: this.props.userID
+    });
   }
 
 
 
   handleClickDelete(i, event) {
     console.log(this.state.bookmarks);
-    axios.delete('/api/deleteBookmark/' + this.props.userID + '/' + i);
+    axios.delete('/api/deleteBookmark/' + this.props.userID ? this.props.userID : this.state.userID + '/' + i);
 
     let updatedBookmarks = this.state.bookmarks;
     this.objSplice(updatedBookmarks, i);

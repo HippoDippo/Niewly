@@ -16,16 +16,26 @@ class Posts extends React.Component {
   }
 
   componentDidMount() {
-    axios.all([
-      axios.get('/api/getPosts'),
-      axios.get('/auth/me')
-    ])
-    .then(axios.spread((postRes, authRes) => {
-      this.setState({
-        posts: [...postRes.data],
-        userID: authRes.data.id
+    // If user is logged in.
+    if (this.props.userID)
+      axios.all([
+        axios.get('/api/getPosts'),
+        axios.get('/auth/me')
+      ])
+      .then(axios.spread((postRes, authRes) => {
+        this.setState({
+          posts: [...postRes.data],
+          userID: authRes.data.id
+        });
+      }));
+    // If user is not logged in.
+    else
+      axios.get('/api/getPosts')
+      .then(res => {
+        this.setState({
+          posts: [...res.data]
+        });
       });
-    }));
   }
 
   handleClickSave(i, event) {
@@ -51,7 +61,7 @@ class Posts extends React.Component {
                     <li className="Post-item">Author: <span className="author">{arr[i].post_author}</span></li>
                     <div className="Post-buttons">
                       <Link to="/postView" onClick={this.handleClickView.bind(this, arr[i].id)} className="Post-item view-button"><li>View</li></Link>
-                      <li onClick={this.handleClickSave.bind(this, arr[i].id)} className="Post-item save-button">Save</li>
+                      { this.props.userID ? <li onClick={this.handleClickSave.bind(this, arr[i].id)} className="Post-item save-button">Save</li> : null }
                     </div>
                   </ul>
                 </div>
