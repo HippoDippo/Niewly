@@ -3,7 +3,7 @@ import './BookMarks.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updatePostId, updateBackBtnRoute } from '../../ducks/reducer';
+import { updatePostId } from '../../ducks/reducer';
 
 class BookMarks extends React.Component {
   constructor(props) {
@@ -14,24 +14,25 @@ class BookMarks extends React.Component {
       userID: 0
     }
 
-    this.getAllSavedPosts = this.getAllSavedPosts.bind(this);
+    // this.getAllSavedPosts = this.getAllSavedPosts.bind(this);
   }
 
-  getAllSavedPosts(bookmarksRes) {
-    let bookmarks = [], bookmarkIds = [];
-    for (var y = 0; y < bookmarksRes.data.length; y++) {
-      axios.get('/api/getPost/' + bookmarksRes.data[y].post_id)
-      .then(postsRes => {
-        if (y > 0 && !bookmarkIds.includes(postsRes.data[0].id)) { // Prevent same posts from being saved more than once.
-          bookmarkIds.push(postsRes.data[0].id);
-          bookmarks.push(postsRes.data[0])
-          this.setState({
-            bookmarks: [...bookmarks]
-          });
-        }
-      });
-    }
-  }
+  // getAllSavedPosts(bookmarksRes) {
+  //   let bookmarks = [], bookmarkIds = [];
+  //   for (var y = 0; y < bookmarksRes.data.length; y++) {
+  //     axios.get('/api/getPost/' + bookmarksRes.data[y].post_id)
+  //     .then(postsRes => {
+  //       console.log(postsRes, ' ', y);
+  //       if (y > 0 && !bookmarkIds.includes(postsRes.data[0].id)) { // Prevent same posts from being saved more than once.
+  //         bookmarkIds.push(postsRes.data[0].id);
+  //         bookmarks.push(postsRes.data[0])
+  //         this.setState({
+  //           bookmarks: [...bookmarks]
+  //         });
+  //       }
+  //     });
+  //   }
+  // }
 
   objSplice(bookmarks, id) {
     let index;
@@ -45,20 +46,38 @@ class BookMarks extends React.Component {
   }
 
   componentDidMount() {
+    let userBookmarks = [], bookmarkIds = [];
     axios.get('/api/getBookmarks/' + this.props.userID)
     .then(bookmarksRes => {
-      this.getAllSavedPosts(bookmarksRes);
-    });
-    this.setState({
-      userID: this.props.userID
+      console.log(bookmarksRes);
+      // this.getAllSavedPosts(bookmarksRes);
+      // for (var y = 0; y < bookmarksRes.data.length; y++) {
+      //   if () {
+      //     //
+      //   }
+      // }
+      for (var y = 0; y < bookmarksRes.data.length; y++) {
+        axios.get('/api/getPost/' + bookmarksRes.data[y].post_id)
+        .then(post => {
+          console.log('y: ', y);
+          console.log(post.data);
+          if (post.data.length !== 0) {
+            if (y > 0 && !bookmarkIds.includes(post.data[0].id)) {
+              bookmarkIds.push(post.data[0].id);
+              userBookmarks.push(post.data[0]);
+              this.setState({
+                bookmarks: [...userBookmarks]
+              });
+            }
+          }
+        });
+      }
     });
   }
 
-
-
   handleClickDelete(i, event) {
     console.log(this.state.bookmarks);
-    axios.delete('/api/deleteBookmark/' + this.props.userID ? this.props.userID : this.state.userID + '/' + i);
+    axios.delete('/api/deleteBookmark/' + this.props.userID + '/' + i);
 
     let updatedBookmarks = this.state.bookmarks;
     this.objSplice(updatedBookmarks, i);

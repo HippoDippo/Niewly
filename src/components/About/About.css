@@ -1,0 +1,15 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-heading {
+
+}
+
+.about-body {
+  margin-left: 333px;
+  margin-right: 333px;
+}

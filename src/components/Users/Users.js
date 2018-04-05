@@ -25,8 +25,8 @@ class Users extends React.Component {
     });
   }
 
-  handleFollowClick() {
-    //
+  handleFollowClick(i, event) {
+    axios.post('/api/followUser', { userID: this.props.userID, followedUserID: i });
     console.log('Followed!');
   }
 

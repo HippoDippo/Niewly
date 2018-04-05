@@ -4,6 +4,7 @@ import './App.css';
 import axios from 'axios';
 import NavBar from './components/NavBar/NavBar';
 import Routes from './routes';
+import Footer from './components/Footer/Footer';
 
 class App extends Component {
   constructor(props) {
@@ -28,6 +29,7 @@ class App extends Component {
       <div className="App">
         <NavBar user={this.state.user}/>
         {Routes}
+        <Footer />
       </div>
     );
   }

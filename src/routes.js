@@ -6,6 +6,7 @@ import Feed from './components/Feed/Feed';
 import Users from './components/Users/Users';
 import BookMarks from './components/BookMarks/BookMarks';
 import PostView from './components/PostView/PostView';
+import About from './components/About/About';
 
 export default (
   <Switch>
@@ -15,5 +16,6 @@ export default (
     <Route path="/editor" component={Editor}/>
     <Route path="/bookmarks" component={BookMarks}/>
     <Route path="/postView" component={PostView}/>
+    <Route path="/about" component={About} />
   </Switch>
 );

@@ -87,14 +87,23 @@ app.get('/api/getAllUsers', (req, res) => {
   });
 });
 
-app.get('/api/searchusers/:username', (req, res) => {
+app.get('/api/getFollowedUsers/:userID', (req, res) => {
   const db = req.app.get('db');
 
-  db.search_for_users(req.params.username)
-  .then(res => {
-    res.status(200).send(res);
+  db.get_followed_users(Number(req.params.userID))
+  .then(users => {
+    res.status(200).send(users);
   });
 });
+
+// app.get('/api/searchusers/:username', (req, res) => {
+//   const db = req.app.get('db');
+
+//   db.search_for_users(req.params.username)
+//   .then(res => {
+//     res.status(200).send(res);
+//   });
+// });
 
 app.get('/api/getPost/:id', (req, res) => {
   const db = req.app.get('db');
@@ -151,6 +160,12 @@ app.post('/api/createBookmark', (req, res) => {
   const db = req.app.get('db');
 
   db.create_bookmark(req.body.user_id, req.body.post_id);
+});
+
+app.post('/api/followUser', (req, res) => {
+  const db = req.app.get('db');
+
+  db.follow_user(Number(req.body.userID), Number(req.body.followedUserID));
 });
 
 // app.put();

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { updateUserId, updatePostId } from '../../ducks/reducer';
 import { Link } from 'react-router-dom';
+import FollowedUserPosts from '../FollowedUserPosts/FollowedUserPosts';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -78,8 +79,8 @@ class Profile extends React.Component {
           </div>
           <div className="profile-followed-user-posts">
             <h1 className="profile-followed-user-posts-heading">Followed Posts</h1>
-            {/* <FollowedUsersPosts /> */}
-            <div className="Posts">{userPosts}</div>
+            <FollowedUserPosts userID={this.state.userID}/>
+            {/* <div className="Posts">{userPosts}</div> */}
           </div>
         </div>
       </div>
