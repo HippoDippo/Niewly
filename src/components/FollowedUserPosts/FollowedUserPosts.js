@@ -13,8 +13,10 @@ class FollowedUserPosts extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.userID); // User Id is not getting there fast enough.
     axios.get('/api/getFollowedUsers/' + this.props.userID)
     .then(res => {
+      console.log(res);
       for (var y = 0; y < res.data.length; y++) {
         axios.get('/api/getPosts/' + res.data[y].followed_user_id)
         .then(posts => {
@@ -27,7 +29,7 @@ class FollowedUserPosts extends React.Component {
   }
 
   render() {
-    console.log(this.state.posts);
+    // console.log(this.state.posts);
     // let posts = this.state.posts.map((e, i, arr) => {
     //   return
     // });

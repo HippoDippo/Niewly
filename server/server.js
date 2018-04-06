@@ -72,7 +72,7 @@ app.get('/auth/me', (req, res, next) => {
 
 app.get('/auth/logout', (req, res) => {
   req.logOut();
-  return res.redirect('http://localhost:3000/#/feed');
+  return res.redirect('http://localhost:3000/#/');
 });
 
 app.get('/api/getAllUsers', (req, res) => {
@@ -87,10 +87,10 @@ app.get('/api/getAllUsers', (req, res) => {
   });
 });
 
-app.get('/api/getFollowedUsers/:userID', (req, res) => {
+app.get('/api/getFollowedUsers/:id', (req, res) => {
   const db = req.app.get('db');
 
-  db.get_followed_users(Number(req.params.userID))
+  db.get_followed_users(req.params.id)
   .then(users => {
     res.status(200).send(users);
   });

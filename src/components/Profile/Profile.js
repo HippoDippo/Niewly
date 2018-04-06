@@ -4,7 +4,6 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { updateUserId, updatePostId } from '../../ducks/reducer';
 import { Link } from 'react-router-dom';
-import FollowedUserPosts from '../FollowedUserPosts/FollowedUserPosts';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -14,7 +13,8 @@ class Profile extends React.Component {
       userName: '',
       userImg: '',
       userID: 0,
-      posts: []
+      posts: [],
+      followedPosts: []
     }
   }
 
@@ -26,13 +26,25 @@ class Profile extends React.Component {
         userImg: res.data.img,
         userID: res.data.id
       });
-      axios.get('/api/getOurPosts/' + res.data.id)
-      .then(posts => {
+
+      axios.all([
+        axios.get('/api/getOurPosts/' + res.data.id),
+        axios.get('/api/getFollowedUsers/' + res.data.id)
+      ])
+      .then(axios.spread((ourPostsRes, followedUsersRes) => {
         this.setState({
-          posts: [...posts.data]
+          posts: [...ourPostsRes.data]
         });
-        console.log(posts.data);
-      });
+
+        for (var y = 0; y < followedUsersRes.data.length; y++) {
+          axios.get('/api/getOurPosts/' + followedUsersRes.data[y].followed_user_id)
+          .then(posts => {
+            this.setState({
+              followedPosts: [...posts.data]
+            });
+          });
+        }
+      }));
     });
   }
 
@@ -46,6 +58,25 @@ class Profile extends React.Component {
     let { userID } = this.state;
 
     let userPosts = this.state.posts.map((e, i, arr) => {
+      return (<div key={arr[i].id} id={arr[i].id} className="Post">
+                <div className="Post-header">
+                  <h2 className="Post-heading">{arr[i].post_title}</h2>
+                </div>
+                <div className="Post-content">
+                  <ul className="Post-items">
+                    <li className="Post-item Post-intro">{arr[i].post_intro}</li>
+                    <li className="Post-item">Author: <span className="author">{arr[i].post_author}</span></li>
+                    <div className="Post-buttons">
+                      <Link to="/postView" onClick={this.handleClickView.bind(this, arr[i].id)} className="Post-item view-button"><li>View</li></Link>
+                      {/* { this.props.userID ? <li onClick={this.handleClickSave.bind(this, arr[i].id)} className="Post-item save-button">Save</li> : null } */}
+                    </div>
+                  </ul>
+                </div>
+              </div>
+      );
+    });
+
+    let followedUserPosts = this.state.followedPosts.map((e, i, arr) => {
       return (<div key={arr[i].id} id={arr[i].id} className="Post">
                 <div className="Post-header">
                   <h2 className="Post-heading">{arr[i].post_title}</h2>
@@ -79,8 +110,9 @@ class Profile extends React.Component {
           </div>
           <div className="profile-followed-user-posts">
             <h1 className="profile-followed-user-posts-heading">Followed Posts</h1>
-            <FollowedUserPosts userID={this.state.userID}/>
+            {/* <FollowedUserPosts userID={this.state.userID}/> */}
             {/* <div className="Posts">{userPosts}</div> */}
+            <div className="Posts">{followedUserPosts}</div>
           </div>
         </div>
       </div>
