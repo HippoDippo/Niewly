@@ -99,19 +99,19 @@ class Profile extends React.Component {
 
     return (
       <div className="profile">
-        <div className="profile-info">
+        <div className="headings">
           <h1 className="user-name">{userName}</h1>
-          <img src={userImg} className="profile-img" />
+          <h1 className="user-posts-heading">Your Posts</h1>
+          <h1 className="followed-user-posts-heading">Followed Posts</h1>
         </div>
-        <div className="profile-posts">
-          <div className="profile-user-posts">
-            <h1 className="profile-user-posts-heading">Your Posts</h1>
+        <div className="content">
+          <div className="img">
+            <img src={userImg} className="profile-img" />
+          </div>
+          <div className="user-posts">
             <div className="Posts">{userPosts}</div>
           </div>
-          <div className="profile-followed-user-posts">
-            <h1 className="profile-followed-user-posts-heading">Followed Posts</h1>
-            {/* <FollowedUserPosts userID={this.state.userID}/> */}
-            {/* <div className="Posts">{userPosts}</div> */}
+          <div className="followed-user-posts">
             <div className="Posts">{followedUserPosts}</div>
           </div>
         </div>

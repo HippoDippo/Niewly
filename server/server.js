@@ -96,14 +96,15 @@ app.get('/api/getFollowedUsers/:id', (req, res) => {
   });
 });
 
-// app.get('/api/searchusers/:username', (req, res) => {
-//   const db = req.app.get('db');
+app.get('/api/searchusers/:username', (req, res) => {
+  const db = req.app.get('db');
+  let username = req.params.username + '%';
 
-//   db.search_for_users(req.params.username)
-//   .then(res => {
-//     res.status(200).send(res);
-//   });
-// });
+  db.search_for_users(username)
+  .then(users => {
+    res.status(200).send(users);
+  });
+});
 
 app.get('/api/getPost/:id', (req, res) => {
   const db = req.app.get('db');

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Users.css';
 import axios from 'axios';
-// import Search from '../Search/Search';
+import magnifyGlass from '../../img/mag.png';
 import { connect } from 'react-redux';
 
 class Users extends React.Component {
@@ -10,10 +10,9 @@ class Users extends React.Component {
 
     this.state = {
       users: []
-      // searchInput: ''
     };
 
-    // this.handleSearchInput = this.handleSearchInput.bind(this);
+    this.handleSearchInput = this.handleSearchInput.bind(this);
   }
 
   componentDidMount() {
@@ -27,14 +26,26 @@ class Users extends React.Component {
 
   handleFollowClick(i, event) {
     axios.post('/api/followUser', { userID: this.props.userID, followedUserID: i });
-    console.log('Followed!');
   }
 
-  // handleSearchInput(event) {
-  //   this.setState({
-  //     searchInput: event.target.value
-  //   });
-  // }
+  handleSearchInput(event) {
+    if (event.target.value) {
+      let searchInput = event.target.value;
+      axios.get('/api/searchusers/' + searchInput)
+      .then(users => {
+        this.setState({
+          users: [...users.data]
+        });
+      });
+    } else {
+      axios.get('/api/getAllUsers')
+        .then(res => {
+          this.setState({
+            users: [...res.data]
+          });
+        });
+    }
+  }
 
   render() {
 
@@ -60,6 +71,10 @@ class Users extends React.Component {
         {/* <input value={this.state.searchInput} onChange={(e) => this.handleSearchInput(e)} />
         {<Search /> ? <Search /> : users}
         <Search searchInput={this.state.searchInput}/> */}
+        <div className="search">
+          <img className="search-img" src={magnifyGlass} />
+          <input className="search-input"onChange={(e) => this.handleSearchInput(e)} />
+        </div>
         {users}
       </div>
     );
