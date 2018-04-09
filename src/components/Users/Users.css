@@ -7,10 +7,11 @@
 }
 
 .profile-img {
-    height: 100px;
-    width: 100px;
+    height: 133px;
+    width: 133px;
     border-radius: 7px;
     background-color: #7279da;
+    margin-right: 7px;
 }
 
 .Users {
@@ -34,6 +35,10 @@
 
 .User-header {
   padding: .7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .User-heading {
