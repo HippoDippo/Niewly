@@ -29,7 +29,7 @@ class App extends Component {
       <div className="App">
         <NavBar user={this.state.user}/>
         {Routes}
-        <Footer />
+        <Footer user={this.state.user} />
       </div>
     );
   }

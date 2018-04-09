@@ -24,8 +24,8 @@ export default function NavBar(props) {
         <ul className="nav-links">
           <Link className="nav-link" to="/"><li>Feed</li></Link>
           <Link className="nav-link" to="/users"><li>Users</li></Link>
-          <Link className="nav-link" to="/about"><li>About</li></Link>
-          {showProfile()}
+          { props.user ? null : <Link className="nav-link" to="/about"><li>About</li></Link> }
+          { showProfile() }
         </ul>
       </div>
     </div>

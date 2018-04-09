@@ -1,6 +1,7 @@
 .post-view {
-  margin-left: 333px;
-  margin-right: 333px;
+  margin-left: 200px;
+  margin-right: 200px;
+  /* max-width: 1000px */
 }
 
 .post {

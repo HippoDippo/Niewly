@@ -4,7 +4,9 @@
 }
 
 .post-body {
-  font-size: 17px;
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 33px;
   padding: 7px;
   margin: 3px;
 }
@@ -19,9 +21,9 @@
 }
 
 .post-body-sections {
-  /*  */
-}
-
-.post-body-section {
-  /*  */
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 23px;
+  padding: 7px;
+  margin: 3px;
 }

@@ -6,10 +6,26 @@
 }
 
 .about-heading {
-
+  margin-top: 33px;
+  margin-bottom: 33px;
+  font-size: 33px;
+  font-weight: 700;
 }
 
 .about-body {
-  margin-left: 333px;
-  margin-right: 333px;
+  font-size: 23px;
+  font-weight: 100;
+  max-width: 1000px;
+  line-height: 33px;
+}
+
+.about-body a {
+  color: #7279da;
+  text-decoration: none;
+  font-size: 23px;
+  font-weight: 100;
+}
+
+.about-body a:hover {
+  color: #7259da;
 }

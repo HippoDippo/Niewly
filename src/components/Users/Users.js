@@ -68,9 +68,6 @@ class Users extends React.Component {
 
     return (
       <div className="Users">
-        {/* <input value={this.state.searchInput} onChange={(e) => this.handleSearchInput(e)} />
-        {<Search /> ? <Search /> : users}
-        <Search searchInput={this.state.searchInput}/> */}
         <div className="search">
           <img className="search-img" src={magnifyGlass} />
           <input className="search-input"onChange={(e) => this.handleSearchInput(e)} />

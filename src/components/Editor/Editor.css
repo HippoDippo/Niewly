@@ -34,3 +34,37 @@
     color: #333;
     background-color: #fff;
   }
+
+.editor-instructions-heading {
+  font-size: 20px;
+  margin-top: 33px;
+  margin-bottom: 7px;
+}
+
+.editor-instructions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 77px;
+}
+
+#instructions-list {
+  line-height: 23px;
+  background-color: #eee;
+  border: 3px solid #333;
+  padding: 23px;
+}
+
+.post-example-heading {
+  font-size: 20px;
+  margin-top: 33px;
+  margin-bottom: 7px;
+}
+
+.post-example {
+  line-height: 23px;
+  background-color: #eee;
+  border: 3px solid #333;
+  padding: 23px;
+}

@@ -107,22 +107,42 @@ class Editor extends React.Component {
 
   handleEditorClick() {
     let post = this.extractContents(this.replaceAll(this.state.editorInput, '\n', ' '));
+    // post.body = this.replaceAll(post.body, '|', '\n');
     this.setState({
       editorInput: ''
     });
-    console.log(post);
     axios.post('/api/createPost', { user_id: this.state.userID, title: post.title, intro: post.intro, author: this.state.author, body: post.body })
   }
 
   render() {
 
     return (
-      <div className="editor">
-        <div>
-          <textarea value={this.state.editorInput} onChange={(e) => this.handleEditorInput(e)} className="input"/>
+      <div className="editor-page">
+        <div className="editor">
+          <div>
+            <textarea value={this.state.editorInput} onChange={(e) => this.handleEditorInput(e)} className="input"/>
+          </div>
+          <div>
+            <button onClick={this.handleEditorClick} className="button">Post</button>
+          </div>
         </div>
-        <div>
-          <button onClick={this.handleEditorClick} className="button">Post</button>
+        <div className="editor-instructions">
+          <h1 className="editor-instructions-heading">How to use the Editor:</h1>
+          <ul id="instructions-list">
+            <li>Title ---> # This is our Title #</li>
+            <li>Intro ---> ## This is our Intro ##</li>
+            <li>Body ---> The body comes after the Intro, and does not require any special characters.</li>
+            <li>Code Blocks ---> {'<<'} function greet() {'{'} console.log('Hello!'); } {'>>'} (Code Blocks are in the Body.)</li>
+          </ul>
+
+          <h1 className="post-example-heading">Complete Post Example:</h1>
+          <div className="post-example">
+            <p># Node.js Streams #<br />
+               ## Why they are awesome ##<br />
+              Node Streams are awesome because... blah blah blah, here is some code:<br />
+              {'<<'} request.pipe(transform).pipe(response) {'>>'}
+            </p>
+          </div>
         </div>
       </div>
     );
