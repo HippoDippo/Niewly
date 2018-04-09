@@ -4,6 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { updatePostId, updateBackBtnRoute } from '../../ducks/reducer';
 import { Link } from 'react-router-dom';
+import magnifyGlass from '../../img/mag.png';
 
 class Posts extends React.Component {
   constructor(props) {
@@ -13,6 +14,8 @@ class Posts extends React.Component {
       posts: [],
       userID: 0
     }
+
+    this.handleSearchInput = this.handleSearchInput.bind(this);
   }
 
   componentDidMount() {
@@ -36,6 +39,25 @@ class Posts extends React.Component {
           posts: [...res.data]
         });
       });
+  }
+
+  handleSearchInput(event) {
+    if (event.target.value) {
+      let searchInput = event.target.value;
+      axios.get('/api/searchposts/' + searchInput)
+      .then(posts => {
+        this.setState({
+          posts: [...posts.data]
+        });
+      });
+    } else {
+      axios.get('/api/getPosts')
+        .then(res => {
+          this.setState({
+            posts: [...res.data]
+          });
+        });
+    }
   }
 
   handleClickSave(i, event) {
@@ -71,6 +93,10 @@ class Posts extends React.Component {
 
     return (
       <div className="Posts">
+        <div className="search">
+          <img className="search-img" src={magnifyGlass} />
+          <input className="search-input"onChange={(e) => this.handleSearchInput(e)} />
+        </div>
         {userPosts}
       </div>
     );

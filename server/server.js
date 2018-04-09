@@ -106,6 +106,16 @@ app.get('/api/searchusers/:username', (req, res) => {
   });
 });
 
+app.get('/api/searchposts/:title', (req, res) => {
+  const db = req.app.get('db');
+  let title = req.params.title + '%';
+
+  db.search_for_posts(title)
+  .then(posts => {
+    res.status(200).send(posts);
+  });
+});
+
 app.get('/api/getPost/:id', (req, res) => {
   const db = req.app.get('db');
 

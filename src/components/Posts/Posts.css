@@ -108,3 +108,26 @@
 .Post-buttons {
   display: flex;
 }
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 7px;
+  margin-bottom: 14px;
+}
+
+.search-img {
+  background-color: #fff;
+  height: 33px;
+  width: 33px;
+  margin-right: 3px;
+}
+
+.search-input {
+  margin-top: 1px;
+  margin-left: 3px;
+  font-size: 14px;
+  padding: 3px;
+  border: .5px solid #333;
+}
