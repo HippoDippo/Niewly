@@ -13,26 +13,7 @@ class BookMarks extends React.Component {
       bookmarks: [],
       userID: 0
     }
-
-    // this.getAllSavedPosts = this.getAllSavedPosts.bind(this);
   }
-
-  // getAllSavedPosts(bookmarksRes) {
-  //   let bookmarks = [], bookmarkIds = [];
-  //   for (var y = 0; y < bookmarksRes.data.length; y++) {
-  //     axios.get('/api/getPost/' + bookmarksRes.data[y].post_id)
-  //     .then(postsRes => {
-  //       console.log(postsRes, ' ', y);
-  //       if (y > 0 && !bookmarkIds.includes(postsRes.data[0].id)) { // Prevent same posts from being saved more than once.
-  //         bookmarkIds.push(postsRes.data[0].id);
-  //         bookmarks.push(postsRes.data[0])
-  //         this.setState({
-  //           bookmarks: [...bookmarks]
-  //         });
-  //       }
-  //     });
-  //   }
-  // }
 
   objSplice(bookmarks, id) {
     let index;

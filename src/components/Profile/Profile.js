@@ -53,6 +53,17 @@ class Profile extends React.Component {
     this.props.dispatch(updatePostId(i));
   }
 
+  objSplice(bookmarks, id) {
+    let index;
+
+    for (var y = 0; y < bookmarks.length; y++) {
+      if (bookmarks[y].id === id) {
+        index = y;
+      }
+    }
+    bookmarks.splice(index, 1);
+  }
+
   handleClickDelete(i, event) {
     axios.delete('/api/deletePost/' + this.state.userID + '/' + i);
 
