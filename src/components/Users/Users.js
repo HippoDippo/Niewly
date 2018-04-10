@@ -2,6 +2,7 @@ import React from 'react';
 import './Users.css';
 import axios from 'axios';
 import magnifyGlass from '../../img/mag.png';
+import ninja from '../../img/ninja.png';
 import { connect } from 'react-redux';
 
 class Users extends React.Component {
@@ -53,7 +54,7 @@ class Users extends React.Component {
       return (<div key={arr[i].id} id={arr[i].id} className="User">
                 <div className="User-header">
                   <h2 className="User-heading">{arr[i].user_name}</h2>
-                  <img className="profile-img" src={arr[i].img} alt="profile image"/>
+                  { arr[i].img ? <img className="profile-img" src={arr[i].img}/> : <img className="profile-img" src={ninja} /> }
                 </div>
                 <div className="User-content">
                   <ul className="User-items">

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { updateUserId, updatePostId } from '../../ducks/reducer';
 import { Link } from 'react-router-dom';
+import ninja from '../../img/ninja.png';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -52,6 +53,16 @@ class Profile extends React.Component {
     this.props.dispatch(updatePostId(i));
   }
 
+  handleClickDelete(i, event) {
+    axios.delete('/api/deletePost/' + this.state.userID + '/' + i);
+
+    let updatedPosts = this.state.posts;
+    this.objSplice(updatedPosts, i);
+    this.setState({
+      posts: updatedPosts
+    });
+  }
+
   render() {
     let { userName } = this.state;
     let { userImg } = this.state;
@@ -68,6 +79,7 @@ class Profile extends React.Component {
                     <li className="Post-item">Author: <span className="author">{arr[i].post_author}</span></li>
                     <div className="Post-buttons">
                       <Link to="/postView" onClick={this.handleClickView.bind(this, arr[i].id)} className="Post-item view-button"><li>View</li></Link>
+                      <li onClick={this.handleClickDelete.bind(this, arr[i].id)} className="Post-item delete-button">Delete</li>
                       {/* { this.props.userID ? <li onClick={this.handleClickSave.bind(this, arr[i].id)} className="Post-item save-button">Save</li> : null } */}
                     </div>
                   </ul>
@@ -106,7 +118,7 @@ class Profile extends React.Component {
         </div>
         <div className="content">
           <div className="img">
-            <img src={userImg} className="profile-img" />
+            { userImg ? <img src={userImg} className="profile-img" /> : <img src={ninja} className="profile-img" /> }
           </div>
           <div className="user-posts">
             <div className="Posts">{userPosts}</div>

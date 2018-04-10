@@ -181,6 +181,12 @@ app.post('/api/followUser', (req, res) => {
 
 // app.put();
 
+app.delete('/api/deletePost/:userID/:postID', (req, res) => {
+  const db = req.app.get('db');
+
+  db.delete_post(Number(req.params.userID), Number(req.params.postID));
+});
+
 app.delete('/api/deleteBookmark/:id/:post_id', (req, res) => {
   const db = req.app.get('db');
 

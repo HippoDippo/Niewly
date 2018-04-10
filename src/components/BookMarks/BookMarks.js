@@ -49,18 +49,9 @@ class BookMarks extends React.Component {
     let userBookmarks = [], bookmarkIds = [];
     axios.get('/api/getBookmarks/' + this.props.userID)
     .then(bookmarksRes => {
-      console.log(bookmarksRes);
-      // this.getAllSavedPosts(bookmarksRes);
-      // for (var y = 0; y < bookmarksRes.data.length; y++) {
-      //   if () {
-      //     //
-      //   }
-      // }
       for (var y = 0; y < bookmarksRes.data.length; y++) {
         axios.get('/api/getPost/' + bookmarksRes.data[y].post_id)
         .then(post => {
-          console.log('y: ', y);
-          console.log(post.data);
           if (post.data.length !== 0) {
             if (y > 0 && !bookmarkIds.includes(post.data[0].id)) {
               bookmarkIds.push(post.data[0].id);
@@ -76,7 +67,6 @@ class BookMarks extends React.Component {
   }
 
   handleClickDelete(i, event) {
-    console.log(this.state.bookmarks);
     axios.delete('/api/deleteBookmark/' + this.props.userID + '/' + i);
 
     let updatedBookmarks = this.state.bookmarks;
