@@ -74,6 +74,13 @@ class Profile extends React.Component {
     });
   }
 
+  handleClickSave(i, event) {
+    let selectedPost = this.state.posts.filter(post => {
+      return post.id === i;
+    });
+    axios.post('/api/createBookmark', {user_id: this.state.userID, post_id: i});
+  }
+
   render() {
     let { userName } = this.state;
     let { userImg } = this.state;
@@ -110,7 +117,7 @@ class Profile extends React.Component {
                     <li className="Post-item">Author: <span className="author">{arr[i].post_author}</span></li>
                     <div className="Post-buttons">
                       <Link to="/postView" onClick={this.handleClickView.bind(this, arr[i].id)} className="Post-item view-button"><li>View</li></Link>
-                      {/* { this.props.userID ? <li onClick={this.handleClickSave.bind(this, arr[i].id)} className="Post-item save-button">Save</li> : null } */}
+                      <li onClick={this.handleClickSave.bind(this, arr[i].id)} className="Post-item save-button">Save</li>
                     </div>
                   </ul>
                 </div>

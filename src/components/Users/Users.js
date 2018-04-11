@@ -10,23 +10,54 @@ class Users extends React.Component {
     super(props);
 
     this.state = {
-      users: []
+      users: [],
+      followedUsers: []
     };
 
     this.handleSearchInput = this.handleSearchInput.bind(this);
+    this.objIncludes = this.objIncludes.bind(this);
+    this.followOrUnfollow = this.followOrUnfollow.bind(this);
+  }
+
+  objSplice(followedUsers, id) {
+    let index;
+
+    for (var y = 0; y < followedUsers.length; y++) {
+      if (followedUsers[y].id === id) {
+        index = y;
+      }
+    }
+    followedUsers.splice(index, 1);
   }
 
   componentDidMount() {
-    axios.get('/api/getAllUsers')
-    .then(res => {
+    axios.all([
+      axios.get('/api/getAllUsers'),
+      axios.get('/api/getFollowedUsers/' + this.props.userID)
+    ])
+    .then(axios.spread((usersRes, followedUsersRes) => {
+      console.log(usersRes);
+      console.log(followedUsersRes);
       this.setState({
-        users: [...res.data]
+        users: [...usersRes.data],
+        followedUsers: [...followedUsersRes.data]
       });
-    });
+    }));
   }
 
   handleFollowClick(i, event) {
     axios.post('/api/followUser', { userID: this.props.userID, followedUserID: i });
+    // Force a re-render.
+  }
+
+  handleUnfollowClick(i, event) {
+    axios.delete('/api/unfollowUser/' + this.props.userID + '/' + i);
+
+    let updatedFollowedUsers = this.state.followedUsers;
+    this.objSplice(updatedFollowedUsers, i);
+    this.setState({
+      followedUsers: updatedFollowedUsers
+    });
   }
 
   handleSearchInput(event) {
@@ -48,6 +79,24 @@ class Users extends React.Component {
     }
   }
 
+  objIncludes(array, id) {
+    for (var y = 0; y < array.length; y++) {
+      if (array[y].followed_user_id === id)
+        return true;
+    }
+    return false;
+  }
+
+  followOrUnfollow(followedUsers, id) {
+    if (this.props.userID && !this.objIncludes(followedUsers, id)) {
+      return <li onClick={this.handleFollowClick.bind(this, id)} className="Post-item follow-button">Follow</li>;
+    } else if (this.props.userID && this.objIncludes(followedUsers, id)) {
+      return <li onClick={this.handleUnfollowClick.bind(this, id)} className="Post-item follow-button">Unfollow</li>;
+    } else if (!this.props.userID) {
+      return null;
+    }
+  }
+
   render() {
 
     let users = this.state.users.map((e, i, arr) => {
@@ -59,7 +108,8 @@ class Users extends React.Component {
                 <div className="User-content">
                   <ul className="User-items">
                     <div className="User-buttons">
-                      { this.props.userID ? <li onClick={this.handleFollowClick.bind(this, arr[i].id)} className="Post-item follow-button">Follow</li> : null }
+                      {/* { this.props.userID ? <li onClick={this.handleFollowClick.bind(this, arr[i].id)} className="Post-item follow-button">Follow</li> : null } */}
+                      { this.followOrUnfollow(this.state.followedUsers, arr[i].id) }
                     </div>
                   </ul>
                 </div>

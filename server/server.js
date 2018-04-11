@@ -193,6 +193,12 @@ app.delete('/api/deleteBookmark/:id/:post_id', (req, res) => {
   db.delete_bookmark(Number(req.params.id), Number(req.params.post_id));
 });
 
+app.delete('/api/unfollowUser/:userID/:followedUserID', (req, res) => {
+  const db = req.app.get('db');
+
+  db.unfollow_user(Number(req.params.userID), Number(req.params.followedUserID));
+});
+
 massive(CONNECTION_STRING)
 .then(db => {
   app.set('db', db);
