@@ -30,7 +30,23 @@ class Users extends React.Component {
     followedUsers.splice(index, 1);
   }
 
+  removeTemps(array) {
+    for (var y = 0; y < array.length; y++) {
+      if (array[y].temp) {
+        array.splice(y, 1);
+      }
+    }
+  }
+
   componentDidMount() {
+    if (this.state.followedUsers) {
+      let { followedUsers } = this.state;
+      this.removeTemps(followedUsers);
+      this.setState({
+        followedUsers: followedUsers
+      });
+    }
+
     axios.all([
       axios.get('/api/getAllUsers'),
       axios.get('/api/getFollowedUsers/' + this.props.userID)
@@ -47,6 +63,13 @@ class Users extends React.Component {
 
   handleFollowClick(i, event) {
     axios.post('/api/followUser', { userID: this.props.userID, followedUserID: i });
+
+    let randomID = Math.floor(Math.random * 33333);
+    let updatedFollowedusers = this.state.followedUsers;
+    updatedFollowedusers.push({ temp: true, id: randomID, user_id: this.props.userID, followed_user_id: i});
+    this.setState({
+      followedUsers: updatedFollowedusers
+    });
     // Force a re-render.
   }
 
