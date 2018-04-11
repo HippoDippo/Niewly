@@ -18,6 +18,6 @@ export default (
     <Route path="/bookmarks" component={BookMarks} />
     <Route path="/postView" component={PostView} />
     <Route path="/about" component={About} />
-    <Route path="/editpost/:post_title/:post_intro/:post_body" component={EditPost} />
+    <Route path="/editpost/:post_id/:post_title/:post_intro/:post_body" component={EditPost} />
   </Switch>
 );

@@ -110,7 +110,7 @@ class Profile extends React.Component {
                     <li className="Post-item">Author: <span className="author">{arr[i].post_author}</span></li>
                     <div className="Post-buttons">
                       <Link to="/postView" onClick={this.handleClickView.bind(this, arr[i].id)} className="Post-item view-button"><li>View</li></Link>
-                      <Link to={`/editpost/${arr[i].post_title}/${arr[i].post_intro}/${arr[i].post_body}`} onClick={this.handleClickEdit.bind(this, arr[i].id)} className="Post-item view-button"><li>Edit</li></Link>
+                      <Link to={`/editpost/${arr[i].id}/${arr[i].post_title}/${arr[i].post_intro}/${arr[i].post_body}`} onClick={this.handleClickEdit.bind(this, arr[i].id)} className="Post-item view-button"><li>Edit</li></Link>
                       <li onClick={this.handleClickDelete.bind(this, arr[i].id)} className="Post-item delete-button">Delete</li>
                       {/* { this.props.userID ? <li onClick={this.handleClickSave.bind(this, arr[i].id)} className="Post-item save-button">Save</li> : null } */}
                     </div>

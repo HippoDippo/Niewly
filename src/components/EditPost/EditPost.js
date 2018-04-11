@@ -9,6 +9,7 @@ class EditPost extends React.Component {
     super(props);
 
     this.state = {
+      post_id: this.props.match.params.post_id,
       post_title: this.props.match.params.post_title,
       post_intro: this.props.match.params.post_intro,
       post_body: this.props.match.params.post_body
@@ -17,6 +18,7 @@ class EditPost extends React.Component {
     this.handleTitleUpdate = this.handleTitleUpdate.bind(this);
     this.handleIntroUpdate = this.handleIntroUpdate.bind(this);
     this.handleBodyUpdate = this.handleBodyUpdate.bind(this);
+    this.handleUpdateClick = this.handleUpdateClick.bind(this);
   }
 
   handleTitleUpdate(event) {
@@ -38,7 +40,7 @@ class EditPost extends React.Component {
   }
 
   handleUpdateClick() {
-    axios.put('/api/editPost', { id: this.props.postID, post_title: this.state.post_title, post_intro: this.state.post_intro, post_body: this.state.post_body });
+    axios.put('/api/editPost', { id: this.state.post_id, post_title: this.state.post_title, post_intro: this.state.post_intro, post_body: this.state.post_body });
   }
 
   render() {
