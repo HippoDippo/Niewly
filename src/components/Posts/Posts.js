@@ -2,13 +2,14 @@ import React from 'react';
 import './Posts.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { updatePostId, updateBackBtnRoute } from '../../ducks/reducer';
+import { updatePostId } from '../../ducks/reducer';
 import { Link } from 'react-router-dom';
 import magnifyGlass from '../../img/mag.png';
 
 class Posts extends React.Component {
   constructor(props) {
     super(props);
+
 
     this.state = {
       posts: [],

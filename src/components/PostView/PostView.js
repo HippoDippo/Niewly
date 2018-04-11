@@ -30,6 +30,10 @@ class PostView extends React.Component {
     });
   }
 
+  handleClickSave() {
+    axios.post('/api/createBookmark', {user_id: this.props.userID, post_id: this.props.id});
+  }
+
   render() {
     return (
       <div className="post-view">
@@ -39,8 +43,7 @@ class PostView extends React.Component {
           <Rozetta body={this.state.postBody} />
           <p className="post-author">Author: {this.state.postAuthor}</p>
           <div className="post-buttons">
-            <Link to="/"><button className="post-back-button">Back</button></Link>
-            <button className="post-save-button">Save</button>
+            <button onClick={this.handleClickSave} className="post-save-button">Save</button>
           </div>
         </div>
       </div>
@@ -50,6 +53,7 @@ class PostView extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    userID: state.userID,
     id: state.postID
   };
 }

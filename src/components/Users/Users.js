@@ -52,8 +52,6 @@ class Users extends React.Component {
       axios.get('/api/getFollowedUsers/' + this.props.userID)
     ])
     .then(axios.spread((usersRes, followedUsersRes) => {
-      console.log(usersRes);
-      console.log(followedUsersRes);
       this.setState({
         users: [...usersRes.data],
         followedUsers: [...followedUsersRes.data]
@@ -123,21 +121,21 @@ class Users extends React.Component {
   render() {
 
     let users = this.state.users.map((e, i, arr) => {
-      return (<div key={arr[i].id} id={arr[i].id} className="User">
-                <div className="User-header">
-                  <h2 className="User-heading">{arr[i].user_name}</h2>
-                  { arr[i].img ? <img className="profile-img" src={arr[i].img}/> : <img className="profile-img" src={ninja} /> }
+      if (arr[i].id !== this.props.userID)
+        return (<div key={arr[i].id} id={arr[i].id} className="User">
+                  <div className="User-header">
+                    <h2 className="User-heading">{arr[i].user_name}</h2>
+                    { arr[i].img ? <img className="profile-img" src={arr[i].img}/> : <img className="profile-img" src={ninja} /> }
+                  </div>
+                  <div className="User-content">
+                    <ul className="User-items">
+                      <div className="User-buttons">
+                        { this.followOrUnfollow(this.state.followedUsers, arr[i].id) }
+                      </div>
+                    </ul>
+                  </div>
                 </div>
-                <div className="User-content">
-                  <ul className="User-items">
-                    <div className="User-buttons">
-                      {/* { this.props.userID ? <li onClick={this.handleFollowClick.bind(this, arr[i].id)} className="Post-item follow-button">Follow</li> : null } */}
-                      { this.followOrUnfollow(this.state.followedUsers, arr[i].id) }
-                    </div>
-                  </ul>
-                </div>
-              </div>
-      );
+        );
     });
 
     return (

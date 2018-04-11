@@ -179,7 +179,11 @@ app.post('/api/followUser', (req, res) => {
   db.follow_user(Number(req.body.userID), Number(req.body.followedUserID));
 });
 
-// app.put();
+app.put('/api/editPost', (req, res) => {
+  const db = req.app.get('db');
+
+  db.edit_post(req.body.id, req.body.post_title, req.body.post_intro, req.body.post_body);
+});
 
 app.delete('/api/deletePost/:userID/:postID', (req, res) => {
   const db = req.app.get('db');
