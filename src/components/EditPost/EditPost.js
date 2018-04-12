@@ -48,19 +48,19 @@ class EditPost extends React.Component {
       <div className="edit-post">
         <div className="edit-post-title">
           <label>Title</label>
-          <input onChange={(e) => this.handleTitleUpdate(e)} value={this.state.post_title} />
+          <input className="edit-post-title-input" onChange={(e) => this.handleTitleUpdate(e)} value={this.state.post_title} />
         </div>
         <div className="edit-post-intro">
           <label>Intro</label>
-          <input onChange={(e) => this.handleIntroUpdate(e)} value={this.state.post_intro} />
+          <input className="edit-post-intro-input" onChange={(e) => this.handleIntroUpdate(e)} value={this.state.post_intro} />
         </div>
         <div className="edit-post-body">
           <label>Body</label>
-          <textarea onChange={(e) => this.handleBodyUpdate(e)} value={this.state.post_body} />
+          <textarea className="edit-post-body-input" onChange={(e) => this.handleBodyUpdate(e)} value={this.state.post_body} />
         </div>
         <div className="edit-post-buttons">
-          <Link onClick={this.handleUpdateClick} to="/profile">Update Post</Link>
-          <Link to="/profile">Nevermind</Link>
+          <Link className="edit-post-update-btn" onClick={this.handleUpdateClick} to="/profile">Update Post</Link>
+          <Link className="edit-post-nvm-btn" to="/profile">Nevermind</Link>
         </div>
       </div>
     );

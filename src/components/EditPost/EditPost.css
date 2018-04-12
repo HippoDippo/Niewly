@@ -1,3 +1,90 @@
 .edit-post {
-  /*  */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 14px 33px;
+}
+
+.edit-post-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-post-title label {
+  font-size: 33px;
+  margin: 17px;
+}
+
+.edit-post-title-input {
+  font-size: 20px;
+  border: 3px solid #333;
+  border-radius: 1px;
+}
+
+.edit-post-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px;
+}
+
+.edit-post-intro label {
+  font-size: 33px;
+  margin: 17px;
+}
+
+.edit-post-intro-input {
+  font-size: 20px;
+  border: 3px solid #333;
+  border-radius: 1px;
+  padding: 3px;
+}
+
+.edit-post-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-post-body label {
+  font-size: 33px;
+  margin: 17px;
+}
+
+.edit-post-body-input {
+  height: 300px;
+  width: 700px;
+  font-size: 20px;
+  border: 3px solid #333;
+  border-radius: 1px;
+  padding: 7px;
+}
+
+.edit-post-buttons {
+  margin-top: 37px;
+}
+
+.edit-post-buttons a {
+  color: #fff;
+  background-color: #333;
+  font-size: 20px;
+  text-decoration: none;
+  border: 3px solid #333;
+  border-radius: 1px;
+  padding: 7px;
+}
+
+.edit-post-buttons a:hover {
+  color: #333;
+  background-color: #fff;
+}
+
+.edit-post-update-btn {
+  margin-right: 14px;
+}
+
+.edit-post-nvm-btn {
+  margin-left: 14px;
 }
