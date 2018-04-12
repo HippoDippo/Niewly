@@ -47,8 +47,8 @@ passport.use(new Auth0Strategy({
 app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback', passport.authenticate('auth0', {
-  successRedirect: 'http://localhost:3000/#/profile',
-  failureRedirect: 'http://localhost:3003/auth'
+  successRedirect: process.env.REACT_APP_SUCCESS_REDIRECT,
+  failureRedirect: process.env.REACT_APP_FAILURE_REDIRECT
 }));
 
 passport.serializeUser(function(user, done) {
@@ -72,7 +72,7 @@ app.get('/auth/me', (req, res, next) => {
 
 app.get('/auth/logout', (req, res) => {
   req.logOut();
-  return res.redirect('http://localhost:3000/#/');
+  return res.redirect(process.env.REACT_APP_REDIRECT);
 });
 
 app.get('/api/getAllUsers', (req, res) => {

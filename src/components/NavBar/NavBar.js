@@ -9,11 +9,11 @@ export default function NavBar(props) {
                  <Link className="nav-link" to="/profile"><li>Profile</li></Link>
                  <Link className="nav-link" to="/editor"><li>Editor</li></Link>
                  <Link className="nav-link" to="/bookmarks"><li>Bookmarks</li></Link>
-                 <a className="nav-link" href={'http://localhost:3003/auth/logout'}><li>Logout</li></a>
+                 <a className="nav-link" href={process.env.REACT_APP_LOGOUT}><li>Logout</li></a>
                </Fragment>
       );
     } else {
-      return <a className="nav-link" href="http://localhost:3003/auth"><li>Login</li></a>;
+      return <a className="nav-link" href={process.env.REACT_APP_LOGIN}><li>Login</li></a>;
     }
   }
 
