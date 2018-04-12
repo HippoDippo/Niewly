@@ -23,13 +23,13 @@ class EditPost extends React.Component {
 
   handleTitleUpdate(event) {
     this.setState({
-      post_title: '#' + event.target.value + '#'
+      post_title: event.target.value
     });
   }
 
   handleIntroUpdate(event) {
     this.setState({
-      post_intro: '##' + event.target.value + '##'
+      post_intro: event.target.value
     });
   }
 
