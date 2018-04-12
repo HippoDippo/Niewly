@@ -105,6 +105,23 @@ class Editor extends React.Component {
     return str;
   }
 
+  // check(str, currentIndex) {
+  //   for (var x = currentIndex; x >= 0; x--) {
+  //     if (str[x] === '<<')
+  //       return true;
+  //   }
+  //   return false;
+  // }
+
+  // replaceAll(str, char, replaceChar) {
+  //   for (var y = 0; y < str.length; y++) {
+  //     if (str[y] === char && !this.check(str, y)) {
+  //       str = str.replace(char, replaceChar);
+  //     }
+  //   }
+  //   return str;
+  // }
+
   handleEditorClick() {
     let post = this.extractContents(this.replaceAll(this.state.editorInput, '\n', ' '));
     // post.body = this.replaceAll(post.body, '|', '\n');
