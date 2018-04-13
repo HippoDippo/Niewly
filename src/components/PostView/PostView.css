@@ -66,3 +66,27 @@
   color: #333;
   background-color: #fff;
 }
+
+@media (max-width: 375px) {
+  .post-title {
+    width: 375px;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .post-intro {
+    width: 375px;
+    font-size: 23px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .post-author {
+    width: 375px;
+    display: flex;
+    justify-content: center;
+    margin-top: 23px;
+    margin-bottom: 23px;
+  }
+}
