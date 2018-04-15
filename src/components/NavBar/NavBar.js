@@ -17,6 +17,12 @@ export default function NavBar(props) {
     }
   }
 
+  // (function test() {
+  //   if (window.screen.width === 633) {
+  //     console.log('Ping!');
+  //   }
+  // })()
+
   return (
     <div className="nav">
       <div className="nav-bar">
@@ -31,3 +37,4 @@ export default function NavBar(props) {
     </div>
   );
 }
+// 633px

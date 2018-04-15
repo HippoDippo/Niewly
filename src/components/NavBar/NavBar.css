@@ -40,3 +40,42 @@
 .nav-links li:hover {
   color: #7279da;
 }
+
+@media (max-width: 545px) {
+  /*  */
+}
+
+
+
+#flyoutMenu {
+  width: 100vw;
+  height: 100vh;
+  background-color: #0C2340;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: transform .8s
+              cubic-bezier(0, .52, 0, 1);
+  overflow: scroll;
+  z-index: 1000;
+}
+
+#flyoutMenu.hide {
+  transform: translate3d(-100vw, 0, 0);
+}
+
+#flyoutMenu.show {
+  transform: translate3d(-23vw, 0, 0);
+  overflow: hidden;
+  box-shadow: 0 4px 23px #333;
+}
+
+#flyoutMenu h2 a {
+  color: #fff;
+  margin-left: 93px;
+  text-decoration: none;
+}
+
+#flyoutMenu h2 a:active {
+  color: #BA0C2F;
+}

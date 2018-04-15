@@ -27,17 +27,21 @@
   line-height: 77px;
 }
 
+.followed-user-posts {
+  right: 343px;
+}
+
 .content {
   display: flex;
 }
 
 .user-posts {
-  margin-right: 170px;
+  margin-right: 123px;
 }
 
 .img {
   display: flex;
-  margin-right: 333px;
+  margin-right: 303px;
 }
 
 .profile-img {
