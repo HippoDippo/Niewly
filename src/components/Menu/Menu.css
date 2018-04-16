@@ -1,0 +1,46 @@
+#flyoutMenu {
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: transform .8s
+                cubic-bezier(0, .52, 0, 1);
+    overflow: scroll;
+    z-index: 1000;
+  }
+
+  #flyoutMenu.hide {
+    transform: translate3d(-100vw, 0, 0);
+  }
+
+  #flyoutMenu.show {
+    transform: translate3d(-23vw, 0, 0);
+    overflow: hidden;
+    box-shadow: 0 4px 23px #333;
+}
+
+  #flyoutMenu h2 {
+    font-size: 37px;
+    font-weight: 100;
+    color: #333;
+    margin-left: 93px;
+    margin-top: 55px;
+    margin-bottom: 55px;
+    text-decoration: none;
+  }
+
+  #flyoutMenu h2:active {
+    color: #7279da;
+  }
+
+#flyoutMenu a {
+  text-decoration: none;
+  margin-bottom: 7px;
+}
+
+.login-logout a {
+  font-weight: 100;
+  color: #333;
+}

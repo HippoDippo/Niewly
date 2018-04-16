@@ -29,3 +29,38 @@
 .about-body a:hover {
   color: #7259da;
 }
+
+@media (max-width: 633px) {
+  .about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-heading {
+    margin-top: 33px;
+    margin-bottom: 23px;
+    font-size: 43px;
+    font-weight: 700;
+  }
+
+  .about-body {
+    font-size: 23px;
+    font-weight: 100;
+    max-width: 1000px;
+    line-height: 33px;
+    padding: 33px;
+  }
+
+  .about-body a {
+    color: #7279da;
+    text-decoration: none;
+    font-size: 23px;
+    font-weight: 100;
+  }
+
+  .about-body a:hover {
+    color: #7259da;
+  }
+}

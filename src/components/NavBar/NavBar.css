@@ -6,16 +6,26 @@
   height: 77px;
   width: 100%;
   background-color: #fff;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   padding-top: 14px;
   padding-bottom: 7px;
   position: fixed;
 }
 
+.nav-logo-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
 .nav-logo {
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  margin-left: 680px;
   font-size: 23px;
   margin-bottom: 11px;
   color: #333;
@@ -29,7 +39,10 @@
 }
 
 .nav-links li {
-  margin: 55px;
+  margin-left: 55px;
+  margin-right: 55px;
+  margin-top: 3px;
+  margin-bottom: 55px;
   color: #333;
 }
 
@@ -41,41 +54,25 @@
   color: #7279da;
 }
 
-@media (max-width: 545px) {
-  /*  */
+.nav-bar-top {
+  display: flex;
 }
 
-
-
-#flyoutMenu {
-  width: 100vw;
-  height: 100vh;
-  background-color: #0C2340;
-  position: fixed;
-  top: 0;
-  left: 0;
-  transition: transform .8s
-              cubic-bezier(0, .52, 0, 1);
-  overflow: scroll;
-  z-index: 1000;
+.nav-menu {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
-#flyoutMenu.hide {
-  transform: translate3d(-100vw, 0, 0);
+#nav-menu-icon {
+  height: 55px;
+  width: 55px;
+  margin-left: 3px;
+  background: transparent;
 }
 
-#flyoutMenu.show {
-  transform: translate3d(-23vw, 0, 0);
-  overflow: hidden;
-  box-shadow: 0 4px 23px #333;
-}
-
-#flyoutMenu h2 a {
-  color: #fff;
-  margin-left: 93px;
-  text-decoration: none;
-}
-
-#flyoutMenu h2 a:active {
-  color: #BA0C2F;
+@media (max-width: 633px) {
+  .nav-bar {
+    background: transparent;
+  }
 }
